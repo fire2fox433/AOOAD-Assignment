@@ -172,9 +172,9 @@ namespace AOOAD
 				return this.status;
 			}
 		}
-		public List<string> comments = new List<string>;
-		private employee employee;
-		public employee Employee
+		public List<string> comments = new List<string>();
+		private Employee employee;
+		public Employee Employee
 		{
 			get
 			{
@@ -185,12 +185,12 @@ namespace AOOAD
 				this.employee = value;
 			}
 		}
-		public List<ITSupportMember> sharedList = new List<ITSupportMember>;
+		public List<ITSupportMember> sharedList = new List<ITSupportMember>();
 		public void setStatus(TicketState state)
 		{
 			this.status = state;
 		}
-		public Ticket(char id, string category, string problem, string system, string module, ITSupportMember raised, ReportManager assignee, string severity, int priority, employee employee)
+		public Ticket(char id, string category, string problem, string system, string module, ITSupportMember raised, ITSupportMember assignee, string severity, int priority, Employee employee)
 		{
 			OPEN = new OpenState(this);
 			CLOSE = new CloseState(this);

@@ -12,7 +12,7 @@ namespace AOOAD
 		public void share(ITSupportMember member)
 		{
 			this.myTicket.sharedList.Add(member);
-			Console.WriteLine("The ticket was shared to " + member.name + ".");
+			Console.WriteLine("The ticket was shared to " + member.userID + ".");
 		}
 		public void reopen()
 		{
