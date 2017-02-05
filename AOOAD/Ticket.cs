@@ -20,8 +20,8 @@ namespace AOOAD
 				return this.CLOSE;
 			}
 		}
-		private char ticketID;
-		public char TicketID
+		private string ticketID;
+		public string TicketID
 		{
 			get
 			{
@@ -185,12 +185,34 @@ namespace AOOAD
 				this.employee = value;
 			}
 		}
-		public List<ITSupportMember> sharedList = new List<ITSupportMember>();
+		private bool solved;
+		public bool Solved
+		{
+			get
+			{
+				return this.solved;
+			}
+			set
+			{
+				this.solved = value;
+			}
+		}
+		public List<User> sharedList = new List<User>();
 		public void setStatus(TicketState state)
 		{
 			this.status = state;
 		}
-		public Ticket(char id, string category, string problem, string system, string module, ITSupportMember raised, ITSupportMember assignee, string severity, int priority, Employee employee)
+		public string viewStatus()
+		{
+			if (this.status == OPEN)
+			{
+				return "open";
+			}
+			else {
+				return "close";
+			}
+		}
+		public Ticket(string id, string category, string problem, string system, string module, ITSupportMember raised, ITSupportMember assignee, string severity, int priority, Employee employee)
 		{
 			OPEN = new OpenState(this);
 			CLOSE = new CloseState(this);
@@ -206,6 +228,7 @@ namespace AOOAD
 			this.priority = priority;
 			this.employee = employee;
 			this.open_time = DateTime.Now;
+			this.solved = false;
 		}
 	}
 	
