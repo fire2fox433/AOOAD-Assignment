@@ -19,8 +19,15 @@ namespace AOOAD
 			newUser = new ITSupportMember("234", "123", "123", "123", "123");
 			ITSupportMemberList.Add(newUser);
 			List<Report> reportList = new List<Report>();
-			User loggedinuser = null;
-			while (loggedinuser == null)
+			List<Employee> employeeList = new List<Employee>();
+			List<Admin> adminList = new List<Admin>();
+			List<ReportManager> managerList = new List<ReportManager>();
+			bool loggedin = false;
+			ITSupportMember loggedinIT = null;
+			Employee loggedinEmployee = null;
+			ReportManager loggedinManager = null;
+			Admin loggedinAdmin = null;
+			while (loggedin == false)
 			{
 				Console.WriteLine("Please login \n Username: ");
 				string username = Console.ReadLine();
@@ -30,17 +37,49 @@ namespace AOOAD
 				{
 					if (ITSupportMemberList[i].userID == username && ITSupportMemberList[i].Password == password)
 					{
-						loggedinuser = ITSupportMemberList[i];
+						loggedinIT = ITSupportMemberList[i];
 						Console.WriteLine("You have successfully logged in!");
+						loggedin = true;
 						break;
 					}
 				}
-				if (loggedinuser == null)
+				for (int i = 0; i < employeeList.Count; i++)
+				{
+					if (employeeList[i].userID == username && employeeList[i].Password == password)
+					{
+						loggedinEmployee = employeeList[i];
+						Console.WriteLine("You have successfully logged in!");
+						loggedin = true;
+						break;
+					}
+				}
+				for (int i = 0; i < managerList.Count; i++)
+				{
+					if (managerList[i].userID == username && managerList[i].Password == password)
+					{
+						loggedinManager = managerList[i];
+						Console.WriteLine("You have successfully logged in!");
+						loggedin = true;
+						break;
+					}
+				}
+				for (int i = 0; i < adminList.Count; i++)
+				{
+					if (adminList[i].userID == username && adminList[i].Password == password)
+					{
+						loggedinAdmin = adminList[i];
+						Console.WriteLine("You have successfully logged in!");
+						loggedin = true;
+						break;
+					}
+				}
+
+				if (loggedin == false)
 				{
 					Console.WriteLine("Error, no such user found.");
 				}
 			}
-			if (loggedinuser.Role == "ITSupportMember")
+			if (loggedinIT != null)
 			{
 				Itmenu();
 				string option = Console.ReadLine();
@@ -55,7 +94,7 @@ namespace AOOAD
 						{
 							no = no + 1;
 							openList.Add(ticketList[i]);
-							Console.WriteLine(no+"\t"+ticketList[i].TicketID+"\t\t"+ticketList[i].Problem_desc+"\t"+ticketList[i].Solved);
+							Console.WriteLine(no + "\t" + ticketList[i].TicketID + "\t\t" + ticketList[i].Problem_desc + "\t" + ticketList[i].Solved);
 
 						}
 					}
@@ -124,6 +163,15 @@ namespace AOOAD
 
 				}
 
+			}
+			else if (loggedinAdmin != null)
+			{
+			}
+			else if (loggedinManager != null)
+			{
+			}
+			else if (loggedinEmployee != null)
+			{
 			}
 
 
