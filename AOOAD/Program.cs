@@ -43,6 +43,10 @@ namespace AOOAD
 						break;
 					}
 				}
+				if (loggedin == true)
+				{
+					break;
+				}
 				for (int i = 0; i < employeeList.Count; i++)
 				{
 					if (employeeList[i].userID == username && employeeList[i].Password == password)
@@ -52,6 +56,10 @@ namespace AOOAD
 						loggedin = true;
 						break;
 					}
+				}
+				if (loggedin == true)
+				{
+					break;
 				}
 				for (int i = 0; i < managerList.Count; i++)
 				{
@@ -63,6 +71,10 @@ namespace AOOAD
 						break;
 					}
 				}
+				if (loggedin == true)
+				{
+					break;
+				}
 				for (int i = 0; i < adminList.Count; i++)
 				{
 					if (adminList[i].userID == username && adminList[i].Password == password)
@@ -73,7 +85,10 @@ namespace AOOAD
 						break;
 					}
 				}
-
+				if (loggedin == true)
+				{
+					break;
+				}
 				if (loggedin == false)
 				{
 					Console.WriteLine("Error, no such user found.");
@@ -115,12 +130,12 @@ namespace AOOAD
 					bool sharesuccess = false;
 					while (sharesuccess == false)
 					{
-						string shareusername = loggedinuser.userID;
-						while (shareusername == loggedinuser.userID)
+						string shareusername = loggedinIT.userID;
+						while (shareusername == loggedinIT.userID)
 						{
 							Console.WriteLine("Please enter the username you want to share to: ");
 							shareusername = Console.ReadLine();
-							if (shareusername == loggedinuser.userID)
+							if (shareusername == loggedinIT.userID)
 							{
 								Console.WriteLine("You cannot share to yourself!");
 							}
