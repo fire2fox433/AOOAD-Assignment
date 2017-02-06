@@ -43,9 +43,7 @@
     <Compile Include="ReportManager.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="Report.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OpenState" />
+    <Compile Include="OpenState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
