@@ -11,28 +11,31 @@ namespace AOOAD
 		}
 		public void share(ITSupportMember member)
 		{
-			this.myTicket.sharedList.Add(member);
-			Console.WriteLine("The ticket was shared to " + member.userID + ".");
+			Console.WriteLine("You cannot share when the ticket is closed.");
 		}
 		public void reopen()
 		{
-			Console.WriteLine("The ticket is open, you cannot reopen on open ticket.");
+			if (myTicket.Solved == false)
+			{
+				myTicket.setStatus(myTicket.oPEN);
+				Console.WriteLine("The ticket is opened.");
+			}
+			else
+			{
+				Console.WriteLine("The ticket is already solved! You cannot reopen it!");
+			}
 		}
 		public void closeTicket()
 		{
-			myTicket.setStatus(myTicket.cLOSE);
-			Console.WriteLine("The ticket has been closed.");
+			Console.WriteLine("The ticket is already closed!");
 		}
 		public void commentTicket(string comment)
 		{
-			myTicket.comments.Add(comment);
-			Console.WriteLine("Comment successfully added");
+			Console.WriteLine("You cannot comment on a closed ticket!");
 		}
 		public void assign(int priority, ITSupportMember member)
 		{
-			myTicket.Priority = priority;
-			myTicket.Assignee = member;
-			Console.WriteLine("The ticket has successfully be assigned");
+			Console.WriteLine("You cannot assign someone to a closed ticket!");
 		}
 	}
 }

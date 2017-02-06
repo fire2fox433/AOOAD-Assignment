@@ -136,7 +136,7 @@ namespace AOOAD
                     bool sharesuccess = false;
                     while (sharesuccess == false)
                     {
-                        string shareusername = loggedinIT.userID;
+						string shareusername = loggedinIT.userID;
                         while (shareusername == loggedinIT.userID)
                         {
                             Console.WriteLine("Please enter the username you want to share to: ");

@@ -4,7 +4,7 @@ namespace AOOAD
 {
 	public class Report
 	{
-		private List<Ticket> ticketList;
+		private List<Ticket> ticketList = new List<Ticket>();
 		private string description;
 		private string status;
 		private DateTime open_time;

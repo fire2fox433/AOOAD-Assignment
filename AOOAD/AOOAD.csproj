@@ -37,13 +37,15 @@
     <Compile Include="Ticket.cs" />
     <Compile Include="TicketState.cs" />
     <Compile Include="CloseState.cs" />
-    <Compile Include="OpenState.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="ITSupportMember.cs" />
     <Compile Include="ReportManager.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="Report.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenState" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
