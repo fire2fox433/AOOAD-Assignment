@@ -14,10 +14,13 @@ namespace AOOAD
             List<object> userList = new List<object>(); // new added v2 sean
             ITSupportMember newUser = new ITSupportMember("123", "123", "123", "123", "123");
             userList.Add(newUser); // added v2
-            Ticket newTicket = new Ticket("123", "123", "blue screen of death", "windows", " ", newUser, null , "fking bad", 10 ,null);
+            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", " ", newUser, null , "fking bad", 10 ,null); //added the 1 by ee zher
 			ITSupportMemberList.Add(newUser);
-			ticketList.Add(newTicket);
-			newUser = null;
+			ticketList.Add(newTicket1); //added the 1 by ee zher
+            Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", " ", newUser, null, "Super good", 0, null); //added v2 by ee zher
+            newTicket2.Solved = true; //added v2 by ee zher
+            ticketList.Add(newTicket2); //added v2 by ee zher
+            newUser = null;
 			newUser = new ITSupportMember("234", "123", "123", "123", "123");
 			ITSupportMemberList.Add(newUser);
             userList.Add(newUser); // added v2
