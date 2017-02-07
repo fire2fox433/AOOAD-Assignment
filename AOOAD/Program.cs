@@ -103,90 +103,99 @@ namespace AOOAD
 					Console.WriteLine("Error, no such user found.");
 				}
 			}
-            if (loggedinIT != null)
-            {
-                Itmenu();
-                string option = Console.ReadLine();
-                if (option == "1")
-                {
-                    List<Ticket> openList = new List<Ticket>();
-                    Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
-                    int no = 0;
-                    for (int i = 0; i < ticketList.Count; i++)
-                    {
-                        if (ticketList[i].viewStatus() == "open")
-                        {
-                            no = no + 1;
-                            openList.Add(ticketList[i]);
-                            Console.WriteLine(no + "\t" + ticketList[i].TicketID + "\t\t" + ticketList[i].Problem_desc + "\t" + ticketList[i].Solved);
+			//IT
+			if (loggedinIT != null)
+			{
+				while (true)
+				{
+					Itmenu();
+					string option = Console.ReadLine();
+					if (option == "1")
+					{
+						List<Ticket> openList = new List<Ticket>();
+						Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
+						int no = 0;
+						for (int i = 0; i < ticketList.Count; i++)
+						{
+							if (ticketList[i].viewStatus() == "open")
+							{
+								no = no + 1;
+								openList.Add(ticketList[i]);
+								Console.WriteLine(no + "\t" + ticketList[i].TicketID + "\t\t" + ticketList[i].Problem_desc + "\t" + ticketList[i].Solved);
 
-                        }
-                    }
-                    string ticketOption = "0";
-                    while (true)
-                    {
-                        Console.WriteLine("Please enter the ticket you want to pick: ");
-                        ticketOption = Console.ReadLine();
-                        if (openList.Count < Convert.ToInt32(ticketOption) || Convert.ToInt32(ticketOption) < 1)
-                        {
-                            Console.WriteLine("Invalid ticket option!");
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    Ticket selectedShareTicket = openList[Convert.ToInt32(ticketOption) - 1];
-                    bool sharesuccess = false;
-                    while (sharesuccess == false)
-                    {
-						string shareusername = loggedinIT.userID;
-                        while (shareusername == loggedinIT.userID)
-                        {
-                            Console.WriteLine("Please enter the username you want to share to: ");
-                            shareusername = Console.ReadLine();
-                            if (shareusername == loggedinIT.userID)
-                            {
-                                Console.WriteLine("You cannot share to yourself!");
-                            }
+							}
+						}
+						string ticketOption = "0";
+						while (true)
+						{
+							Console.WriteLine("Please enter the ticket you want to pick: ");
+							ticketOption = Console.ReadLine();
+							if (openList.Count < Convert.ToInt32(ticketOption) || Convert.ToInt32(ticketOption) < 1)
+							{
+								Console.WriteLine("Invalid ticket option!");
+							}
+							else
+							{
+								break;
+							}
+						}
+						Ticket selectedShareTicket = openList[Convert.ToInt32(ticketOption) - 1];
+						bool sharesuccess = false;
+						while (sharesuccess == false)
+						{
+							string shareusername = loggedinIT.userID;
+							while (shareusername == loggedinIT.userID)
+							{
+								Console.WriteLine("Please enter the username you want to share to: ");
+								shareusername = Console.ReadLine();
+								if (shareusername == loggedinIT.userID)
+								{
+									Console.WriteLine("You cannot share to yourself!");
+								}
 
-                        }
-                        for (int i = 0; i < ITSupportMemberList.Count; i++)
-                        {
-                            if (ITSupportMemberList[i].userID == shareusername)
-                            {
-                                for (int y = 0; y < ticketList.Count; y++)
-                                {
-                                    if (ticketList[y] == selectedShareTicket)
-                                    {
-                                        ticketList[y].sharedList.Add(ITSupportMemberList[i]);
-                                        ITSupportMemberList[i].sharedList.Add(ticketList[y]);
-                                        sharesuccess = true;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                        if (sharesuccess == false)
-                        {
-                            Console.WriteLine("No such username exists!");
-                        }
-                        else if (sharesuccess == true)
-                        {
-                            Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
-                            string yorn = Console.ReadLine();
-                            if (yorn == "Y")
-                                sharesuccess = false;
-                            else
-                                break;
-                        }
-                    }
+							}
+							for (int i = 0; i < ITSupportMemberList.Count; i++)
+							{
+								if (ITSupportMemberList[i].userID == shareusername)
+								{
+									for (int y = 0; y < ticketList.Count; y++)
+									{
+										if (ticketList[y] == selectedShareTicket)
+										{
+											ticketList[y].sharedList.Add(ITSupportMemberList[i]);
+											ITSupportMemberList[i].sharedList.Add(ticketList[y]);
+											sharesuccess = true;
+										}
+									}
+								}
+								else
+								{
+									continue;
+								}
+							}
+							if (sharesuccess == false)
+							{
+								Console.WriteLine("No such username exists!");
+							}
+							else if (sharesuccess == true)
+							{
+								Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
+								string yorn = Console.ReadLine();
+								if (yorn == "Y")
+									sharesuccess = false;
+								else
+									break;
+							}
+						}
 
 
-                }
+					}
+					else if (option == "0")
+					{
+						Console.WriteLine("Logging out...");
+						break;
+					}
+				}
 
             }
             else if (loggedinAdmin != null)
