@@ -8,6 +8,7 @@ namespace AOOAD
 		void reopen();
 		void closeTicket();
 		void commentTicket(string comment);
-		void assign(int priorty, ITSupportMember member);
+		void assignPriority(int priorty);
+		void assignMember(ITSupportMember member);
 	}
 }
