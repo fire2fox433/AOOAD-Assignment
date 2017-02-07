@@ -606,7 +606,7 @@ namespace AOOAD
                     {
                         foreach (ITSupportMember Member in ITSupportMemberList)
                         {
-                            Console.WriteLine("{0} & {1} & {2}",Member.userID,Member.FirstName,Member.LastName);
+                            Console.WriteLine("ID: {0}   Name: {1} {2}",Member.userID,Member.FirstName,Member.LastName);
                         }
                     }
                     else if (option == "2") //Generate Report
@@ -691,8 +691,8 @@ namespace AOOAD
 
         public static void RMenu() //added by ee zher
         {
-            Console.WriteLine("a: Print all Solved Ticket");
-            Console.WriteLine("b: Print all Unsolved Ticket");
+            Console.WriteLine("a: View all Solved Ticket");
+            Console.WriteLine("b: View all Unsolved Ticket");
         }
 	}
 
