@@ -23,10 +23,8 @@ namespace AOOAD
             userList.Add(newUser); // added v2
             List<Report> reportList = new List<Report>();
 			List<Employee> employeeList = new List<Employee>();
-			List<Admin> adminList = new List<Admin>();
 			List<ReportManager> managerList = new List<ReportManager>();
-            Admin newAdmin = new Admin("admin", "admin", "123", "123", "123"); // added by seanmarcus
-            adminList.Add(newAdmin); // added by seanmarcus
+			Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
             userList.Add(newUser); // added v2
             ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
             managerList.Add(newReportManager); // added by seanmarcus
