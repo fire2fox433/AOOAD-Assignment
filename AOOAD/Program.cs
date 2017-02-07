@@ -38,7 +38,7 @@ namespace AOOAD
 			Admin loggedinAdmin = null;
 			while (loggedin == false)
 			{
-				Console.WriteLine("Please login \n Username: ");
+				Console.WriteLine("Please login \nUsername: ");
 				string username = Console.ReadLine();
 				Console.WriteLine("Password: ");
 				string password = Console.ReadLine();
@@ -208,7 +208,7 @@ namespace AOOAD
                                 break;
                             }
                             else
-                                Console.WriteLine("Invalid option inputted.");
+                                Console.WriteLine("Invalid option inputted!");
                         }
                         while (true)
                         {
@@ -366,7 +366,7 @@ namespace AOOAD
                                             break;
                                         }
                                         else
-                                            Console.WriteLine("Invalid option entered.");
+                                            Console.WriteLine("Invalid option entered!");
                                     }
                                     break;
                                 }
@@ -475,7 +475,7 @@ namespace AOOAD
                                             break;
                                         }
                                         else
-                                            Console.WriteLine("Invalid option entered.");
+                                            Console.WriteLine("Invalid option entered!");
                                     }
                                     break;
                                 }
@@ -580,7 +580,7 @@ namespace AOOAD
                                             break;
                                         }
                                         else
-                                            Console.WriteLine("Invalid option entered.");
+                                            Console.WriteLine("Invalid option entered!");
                                     }
                                     break;
                                 }
@@ -613,6 +613,8 @@ namespace AOOAD
                     }
                     else if (option == "0")
                         break;
+                    else
+                        Console.WriteLine("Invalid option inputted!");
                 }
             }
             else if (loggedinManager != null) //added by ee zher
@@ -670,7 +672,7 @@ namespace AOOAD
         // Seanmarcus Admin Menu
         public static void  AdminMenu() //added option 0 by ee zher
         {
-            Console.WriteLine("-----------------------------");
+            Console.WriteLine("\n-----------------------------");
             Console.WriteLine("1. Register User");
             Console.WriteLine("2. Generate Report");
             Console.WriteLine("0. Logout");
