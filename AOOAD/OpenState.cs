@@ -28,11 +28,10 @@ namespace AOOAD
 			myTicket.comments.Add(comment);
 			Console.WriteLine("Comment successfully added");
 		}
-		public void assign(int priority, ITSupportMember member)
+		public void assign(int priority)
 		{
 			myTicket.Priority = priority;
-			myTicket.Assignee = member;
-			Console.WriteLine("The ticket has successfully be assigned");
+			Console.WriteLine("The ticket's priority has successfully be assigned");
 		}
 	}
 }

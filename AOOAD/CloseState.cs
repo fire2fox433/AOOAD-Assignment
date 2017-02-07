@@ -33,9 +33,9 @@ namespace AOOAD
 		{
 			Console.WriteLine("You cannot comment on a closed ticket!");
 		}
-		public void assign(int priority, ITSupportMember member)
+		public void assign(int priority)
 		{
-			Console.WriteLine("You cannot assign someone to a closed ticket!");
+			Console.WriteLine("You cannot assign a priority to a closed ticket!");
 		}
 	}
 }
