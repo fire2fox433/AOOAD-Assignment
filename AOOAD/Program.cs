@@ -12,7 +12,7 @@ namespace AOOAD
 
 			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
             List<object> userList = new List<object>(); // new added v2 sean
-            ITSupportMember newUser = new ITSupportMember("123", "123", "123", "123", "123");
+            ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
             userList.Add(newUser); // added v2
             Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", " ", newUser, null , "fking bad", 10 ,null); //added the 1 by ee zher
 			ITSupportMemberList.Add(newUser);
@@ -21,7 +21,7 @@ namespace AOOAD
             newTicket2.Solved = true; //added v2 by ee zher
             ticketList.Add(newTicket2); //added v2 by ee zher
             newUser = null;
-			newUser = new ITSupportMember("234", "123", "123", "123", "123");
+			newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
 			ITSupportMemberList.Add(newUser);
             userList.Add(newUser); // added v2
             List<Report> reportList = new List<Report>();
@@ -603,18 +603,63 @@ namespace AOOAD
                     RptMenu();
                     string option = Console.ReadLine();
                     if (option == "1") //Assign Ticket
-                        Console.WriteLine("Hello");
+                    {
+                        foreach (ITSupportMember Member in ITSupportMemberList)
+                        {
+                            Console.WriteLine("ID: {0}   Name: {1} {2}",Member.userID,Member.FirstName,Member.LastName);
+                        }
+                    }
                     else if (option == "2") //Generate Report
                     {
                         RMenu();
                         string alphaOpt = Console.ReadLine();
                         if (alphaOpt == "a" || alphaOpt == "A")
                         {
-                            //View all Solved/Closed Tickets
+                            //View all Solved Tickets
+                            foreach (Ticket tick in ticketList)
+                            {
+                                if (tick.Solved == true)
+                                {
+                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                }
+                            }
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
-                            //View all Unsolved/Open Tickets
+                            //View all Unsolved Tickets
+                            foreach (Ticket tick in ticketList)
+                            {
+                                if (tick.Solved == false)
+                                {
+                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                }
+                            }
+                        }
+                        else if (alphaOpt == "c" || alphaOpt == "C")
+                        {
+                            //View all tickets assigned by an IT member
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                    Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
+                            }
+                            Console.WriteLine("Select the User you wish to view");
+                            string memID = Console.ReadLine();
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                if (Member.userID == memID)
+                                {
+                                    foreach (Ticket tick in ticketList)
+                                    {
+                                        if (tick.Raised_by == Member)
+                                        {
+                                            if (tick.Solved == true)
+                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                            else if (tick.Solved == false)
+                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     else if (option == "0")
@@ -672,8 +717,9 @@ namespace AOOAD
 
         public static void RMenu() //added by ee zher
         {
-            Console.WriteLine("a: Print all Solved Ticket");
-            Console.WriteLine("b: Print all Unsolved Ticket");
+            Console.WriteLine("a: View all Solved Ticket");
+            Console.WriteLine("b: View all Unsolved Ticket");
+            Console.WriteLine("c: View all Tickets assigned by a user");
         }
 	}
 
