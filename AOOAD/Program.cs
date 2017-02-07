@@ -196,6 +196,8 @@ namespace AOOAD
                 {
                     AdminMenu();
                     string option = Console.ReadLine();
+                    if (option != "0" || option != "1" || option != "2" || option != "3")
+                        Console.WriteLine("Invalid option inputted!");
                     if (option == "1")
                     {
                         //List<string> register = new List<string>();
@@ -466,7 +468,8 @@ namespace AOOAD
                                         if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
                                         {
                                             ITSupportMember newSupport = new ITSupportMember(userid, password, first, last, email);
-                                            ITSupportMemberList.Add(newSupport);
+                                            //ITSupportMemberList.Add(newSupport);
+                                            userList.Add(newSupport); // added v2
                                             Console.WriteLine(userid + " is successfully registered!");
                                             break;
                                         }
@@ -571,7 +574,8 @@ namespace AOOAD
                                         if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
                                         {
                                             ReportManager newManager = new ReportManager(userid, password, first, last, email);
-                                            managerList.Add(newManager);
+                                            //managerList.Add(newManager);
+                                            userList.Add(newManager); // added v2
                                             Console.WriteLine(userid + " is successfully registered!");
                                             break;
                                         }
@@ -614,8 +618,8 @@ namespace AOOAD
                     }
                     else if (option == "0")
                         break;
-                    else
-                        Console.WriteLine("Invalid option inputted!");
+                    //else
+                    //    Console.WriteLine("Invalid option inputted!");
                 }
             }
             else if (loggedinManager != null) //added by ee zher
