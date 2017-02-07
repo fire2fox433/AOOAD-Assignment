@@ -65,15 +65,15 @@ namespace AOOAD
 			}
 		}
 		protected string role;
-		public string Role
+		public string userType
 		{
 			get
 			{
-				return this.role;
+				return this.userType;
 			}
 			set
 			{
-				this.role = value;
+				this.userType = value;
 			}
 		}
 		/*/

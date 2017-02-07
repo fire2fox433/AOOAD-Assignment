@@ -13,7 +13,7 @@ namespace AOOAD
 			firstName = first;
 			lastName = last;
 			this.email = email;
-			this.Role = "ITSupportMember";
+			this.userType = "ITSupportMember";
 		}
 	}
 }

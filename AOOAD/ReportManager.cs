@@ -11,7 +11,7 @@ namespace AOOAD
 			firstName = first;
 			lastName = last;
 			this.email = email;
-			this.Role = "ReportManager";
+			this.userType = "ReportManager";
 		}
 	}
 }

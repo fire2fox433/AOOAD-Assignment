@@ -50,7 +50,7 @@ namespace AOOAD
 			this.Phone_no = phone;
 			this.Address = address;
 			this.Postal_code = postal;
-			this.Role = "Employee";
+			this.userType = "Employee";
 		}
 		public void viewOnlineHelp()
 		{

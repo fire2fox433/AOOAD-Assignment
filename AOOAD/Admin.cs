@@ -12,7 +12,7 @@ namespace AOOAD
 			firstName = first;
 			lastName = last;
 			this.email = email;
-			this.Role = "Admin";
+			this.userType = "Admin";
 		}
 		public void register()
 		{
