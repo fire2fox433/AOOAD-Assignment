@@ -64,16 +64,16 @@ namespace AOOAD
 				this.email = value;
 			}
 		}
-		protected string role;
+		protected string usertype;
 		public string userType
 		{
 			get
 			{
-				return this.userType;
+				return this.usertype;
 			}
 			set
 			{
-				this.userType = value;
+				this.usertype = value;
 			}
 		}
 		/*/
