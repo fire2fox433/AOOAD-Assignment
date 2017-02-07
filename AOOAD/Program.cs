@@ -11,22 +11,26 @@ namespace AOOAD
 			List<Ticket> ticketList = new List<Ticket>();
 
 			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
-			ITSupportMember newUser = new ITSupportMember("123", "123", "123", "123", "123");
-			Ticket newTicket = new Ticket("123", "123", "blue screen of death", "windows", " ", newUser, null , "fking bad", 10 ,null);
+            List<object> userList = new List<object>(); // new added v2 sean
+            ITSupportMember newUser = new ITSupportMember("123", "123", "123", "123", "123");
+            userList.Add(newUser); // added v2
+            Ticket newTicket = new Ticket("123", "123", "blue screen of death", "windows", " ", newUser, null , "fking bad", 10 ,null);
 			ITSupportMemberList.Add(newUser);
 			ticketList.Add(newTicket);
 			newUser = null;
 			newUser = new ITSupportMember("234", "123", "123", "123", "123");
 			ITSupportMemberList.Add(newUser);
-			List<Report> reportList = new List<Report>();
+            userList.Add(newUser); // added v2
+            List<Report> reportList = new List<Report>();
 			List<Employee> employeeList = new List<Employee>();
 			List<Admin> adminList = new List<Admin>();
 			List<ReportManager> managerList = new List<ReportManager>();
-            List<string> userList = new List<string>(); // added by Seanmarcus
             Admin newAdmin = new Admin("admin", "admin", "123", "123", "123"); // added by seanmarcus
             adminList.Add(newAdmin); // added by seanmarcus
+            userList.Add(newUser); // added v2
             ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
             managerList.Add(newReportManager); // added by seanmarcus
+            userList.Add(newUser); // added v2
             bool loggedin = false;
 			ITSupportMember loggedinIT = null;
 			Employee loggedinEmployee = null;
@@ -197,7 +201,7 @@ namespace AOOAD
                         string userOption = "0";
                         while (true)
                         {
-                            Console.WriteLine("Please type in the number of the type of user you are registering.\n(1) Employee\n(2) IT Support Member\n(3) Reporting Manager");
+                            Console.WriteLine("Please input the number of the type of user type you are registering. (1 - 3)\n(1) \tEmployee\n(2) \tIT Support Member\n(3) \tReporting Manager");
                             userOption = Console.ReadLine();
                             if (userOption == "1" || userOption == "2" || userOption == "3")
                             {
@@ -220,34 +224,44 @@ namespace AOOAD
                                 string depNo;
                                 string address;
                                 string postal;
+                                string regTrue;
                                 while (true)
                                 {
                                     reg = true;
                                     Console.WriteLine("Please enter the employee's user id:");
                                     userid = Console.ReadLine();
-                                    for (int i = 0; i < employeeList.Count; i++)
+                                    foreach (User user in userList)
                                     {
-                                        if (employeeList[i].userID == userid)
+                                        if (user.userID == userid)
                                         {
                                             reg = false;
                                         }
                                     }
-                                    for (int i = 0; i < ITSupportMemberList.Count; i++)
-                                    {
-                                        if (ITSupportMemberList[i].userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
-                                    for (int i = 0; i < managerList.Count; i++)
-                                    {
-                                        if (managerList[i].userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
+                                    //for (int i = 0; i < employeeList.Count; i++)
+                                    //{
+                                    //    if (employeeList[i].userID == userid)
+                                    //    {
+                                    //        reg = false;
+                                    //    }
+                                    //}
+                                    //for (int i = 0; i < ITSupportMemberList.Count; i++)
+                                    //{
+                                    //    if (ITSupportMemberList[i].userID == userid)
+                                    //    {
+                                    //        reg = false;
+                                    //    }
+                                    //}
+                                    //for (int i = 0; i < managerList.Count; i++)
+                                    //{
+                                    //    if (managerList[i].userID == userid)
+                                    //    {
+                                    //        reg = false;
+                                    //    }
+                                    //}
                                     if (reg && userid != "")
                                         break;
+                                    if (reg == false)
+                                        Console.WriteLine("Username already exist!");
                                     else
                                         Console.WriteLine("Invalid user id!");
                                 }
@@ -258,6 +272,8 @@ namespace AOOAD
                                     password = Console.ReadLine();
                                     if (password != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid password!");
                                 }
                                 while (true)
                                 {
@@ -265,6 +281,8 @@ namespace AOOAD
                                     first = Console.ReadLine();
                                     if (first != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid first name!");
                                 }
                                 while (true)
                                 {
@@ -272,13 +290,27 @@ namespace AOOAD
                                     last = Console.ReadLine();
                                     if (last != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid last name!");
                                 }
                                 while (true)
                                 {
+                                    reg = true;
                                     Console.WriteLine("Please enter email of the employee:");
                                     email = Console.ReadLine();
-                                    if (last != "")
+                                    foreach (User user in userList)
+                                    {
+                                        if (user.Email == email)
+                                        {
+                                            reg = false;
+                                        }
+                                    }
+                                    if (reg && email != "")
                                         break;
+                                    if (reg == false)
+                                        Console.WriteLine("Email already exist!");
+                                    else
+                                        Console.WriteLine("Invalid Email!");
                                 }
                                 while (true)
                                 {
@@ -286,6 +318,8 @@ namespace AOOAD
                                     depNo = Console.ReadLine();
                                     if (depNo != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid department number!");
                                 }
                                 while (true)
                                 {
@@ -293,6 +327,8 @@ namespace AOOAD
                                     address = Console.ReadLine();
                                     if (address != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid address!");
                                 }
                                 while (true)
                                 {
@@ -300,10 +336,40 @@ namespace AOOAD
                                     postal = Console.ReadLine();
                                     if (postal != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid postal code!");
                                 }
-                                Employee newEmployee = new Employee(userid, password, first, last, email, depNo, address, postal);
-                                employeeList.Add(newEmployee);
-                                Console.WriteLine(userid + " is successfully registered!");
+                                while (true)
+                                {
+                                    Console.WriteLine("EMPLOYEE-------------------------------------------");
+                                    Console.WriteLine("Username: \t" + userid);
+                                    Console.WriteLine("Password: \t" + password);
+                                    Console.WriteLine("Name: \t\t" + first + " " + last);
+                                    Console.WriteLine("Email: \t\t" + email);
+                                    Console.WriteLine("Address: \t" + address);
+                                    Console.WriteLine("Postal Code: \t" + postal);
+                                    Console.WriteLine("---------------------------------------------------\n");
+                                    while (true)
+                                    {
+                                        Console.WriteLine("Confirm (Yes / No):");
+                                        regTrue = Console.ReadLine();
+                                        if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
+                                        {
+                                            Employee newEmployee = new Employee(userid, password, first, last, email, depNo, address, postal);
+                                            userList.Add(newEmployee);
+                                            Console.WriteLine(userid + " is successfully registered!");
+                                            break;
+                                        }
+                                        else if (regTrue == "No" || regTrue == "no" || regTrue == "NO" || regTrue == "N" || regTrue == "n")
+                                        {
+                                            Console.WriteLine("Good bye.");
+                                            break;
+                                        }
+                                        else
+                                            Console.WriteLine("Invalid option entered.");
+                                    }
+                                    break;
+                                }
                                 break;
                             }
                             // Register IT Support Member
@@ -315,34 +381,25 @@ namespace AOOAD
                                 string first;
                                 string last;
                                 string email;
+                                string regTrue;
                                 while (true)
                                 {
                                     reg = true;
                                     Console.WriteLine("Please enter the IT Support Member's user id:");
                                     userid = Console.ReadLine();
-                                    for (int i = 0; i < employeeList.Count; i++)
+                                    foreach (User user in userList)
                                     {
-                                        if (employeeList[i].userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
-                                    for (int i = 0; i < ITSupportMemberList.Count; i++)
-                                    {
-                                        if (ITSupportMemberList[i].userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
-                                    for (int i = 0; i < managerList.Count; i++)
-                                    {
-                                        if (managerList[i].userID == userid)
+                                        if (user.userID == userid)
                                         {
                                             reg = false;
                                         }
                                     }
                                     if (reg && userid != "")
                                         break;
+                                    if (reg == false)
+                                    {
+                                        Console.WriteLine("Username already exist!");
+                                    }
                                     else
                                         Console.WriteLine("Invalid user id!");
                                 }
@@ -353,6 +410,8 @@ namespace AOOAD
                                     password = Console.ReadLine();
                                     if (password != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid password!");
                                 }
                                 while (true)
                                 {
@@ -360,6 +419,8 @@ namespace AOOAD
                                     first = Console.ReadLine();
                                     if (first != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid first name!");
                                 }
                                 while (true)
                                 {
@@ -367,21 +428,60 @@ namespace AOOAD
                                     last = Console.ReadLine();
                                     if (last != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid last name!");
                                 }
                                 while (true)
                                 {
+                                    reg = true;
                                     Console.WriteLine("Please enter email of the IT Support Member:");
                                     email = Console.ReadLine();
-                                    if (last != "")
+                                    foreach (User user in userList)
+                                    {
+                                        if (user.Email == email)
+                                        {
+                                            reg = false;
+                                        }
+                                    }
+                                    if (reg && email != "")
                                         break;
+                                    if (reg == false)
+                                        Console.WriteLine("Email already exist!");
+                                    else
+                                        Console.WriteLine("Invalid Email!");
                                 }
-                                ITSupportMember newSupport = new ITSupportMember(userid, password, first, last, email);
-                                ITSupportMemberList.Add(newSupport);
-                                Console.WriteLine(userid + " is successfully registered!");
+                                while (true)
+                                {
+                                    Console.WriteLine("IT SUPPORT MEMBER----------------------------------");
+                                    Console.WriteLine("Username: \t" + userid);
+                                    Console.WriteLine("Password: \t" + password);
+                                    Console.WriteLine("Name: \t\t" + first + " " + last);
+                                    Console.WriteLine("Email: \t\t" + email);
+                                    Console.WriteLine("---------------------------------------------------\n");
+                                    while (true)
+                                    {
+                                        Console.WriteLine("Confirm (Yes / No):");
+                                        regTrue = Console.ReadLine();
+                                        if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
+                                        {
+                                            ITSupportMember newSupport = new ITSupportMember(userid, password, first, last, email);
+                                            ITSupportMemberList.Add(newSupport);
+                                            Console.WriteLine(userid + " is successfully registered!");
+                                            break;
+                                        }
+                                        else if (regTrue == "No" || regTrue == "no" || regTrue == "NO" || regTrue == "N" || regTrue == "n")
+                                        {
+                                            Console.WriteLine("Good bye.");
+                                            break;
+                                        }
+                                        else
+                                            Console.WriteLine("Invalid option entered.");
+                                    }
+                                    break;
+                                }
                                 break;
                             }
                             // Register Reporting Manager
-                            //user id, password, first name, last name and email
                             else if (userOption == "3")
                             {
                                 bool reg = true;
@@ -390,34 +490,23 @@ namespace AOOAD
                                 string first;
                                 string last;
                                 string email;
+                                string regTrue;
                                 while (true)
                                 {
                                     reg = true;
                                     Console.WriteLine("Please enter the Reporting Manager's user id:");
                                     userid = Console.ReadLine();
-                                    for (int i = 0; i < employeeList.Count; i++)
+                                    foreach (User user in userList)
                                     {
-                                        if (employeeList[i].userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
-                                    for (int i = 0; i < ITSupportMemberList.Count; i++)
-                                    {
-                                        if (ITSupportMemberList[i].userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
-                                    for (int i = 0; i < managerList.Count; i++)
-                                    {
-                                        if (managerList[i].userID == userid)
+                                        if (user.userID == userid)
                                         {
                                             reg = false;
                                         }
                                     }
                                     if (reg && userid != "")
                                         break;
+                                    if (reg == false)
+                                        Console.WriteLine("Username already exist!");
                                     else
                                         Console.WriteLine("Invalid user id!");
                                 }
@@ -428,6 +517,8 @@ namespace AOOAD
                                     password = Console.ReadLine();
                                     if (password != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid password!");
                                 }
                                 while (true)
                                 {
@@ -435,6 +526,8 @@ namespace AOOAD
                                     first = Console.ReadLine();
                                     if (first != "")
                                         break;
+                                    else
+                                        Console.WriteLine("Invalid first name!");
                                 }
                                 while (true)
                                 {
@@ -445,21 +538,78 @@ namespace AOOAD
                                 }
                                 while (true)
                                 {
+                                    reg = true;
                                     Console.WriteLine("Please enter email of the Reporting Manager:");
                                     email = Console.ReadLine();
-                                    if (last != "")
+                                    foreach (User user in userList)
+                                    {
+                                        if (user.Email == email)
+                                        {
+                                            reg = false;
+                                        }
+                                    }
+                                    if (reg && email != "")
                                         break;
+                                    if (reg == false)
+                                        Console.WriteLine("Email already exist!");
+                                    else
+                                        Console.WriteLine("Invalid Email!");
                                 }
-                                ReportManager newManager = new ReportManager(userid, password, first, last, email);
-                                managerList.Add(newManager);
-                                Console.WriteLine(userid + " is successfully registered!");
+                                while (true)
+                                {
+                                    Console.WriteLine("REPORTING MANAGER----------------------------------");
+                                    Console.WriteLine("Username: \t" + userid);
+                                    Console.WriteLine("Password: \t" + password);
+                                    Console.WriteLine("Name: \t\t" + first + " " + last);
+                                    Console.WriteLine("Email: \t\t" + email);
+                                    Console.WriteLine("---------------------------------------------------\n");
+                                    while (true)
+                                    {
+                                        Console.WriteLine("Confirm (Yes / No):");
+                                        regTrue = Console.ReadLine();
+                                        if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
+                                        {
+                                            ReportManager newManager = new ReportManager(userid, password, first, last, email);
+                                            managerList.Add(newManager);
+                                            Console.WriteLine(userid + " is successfully registered!");
+                                            break;
+                                        }
+                                        else if (regTrue == "No" || regTrue == "no" || regTrue == "NO" || regTrue == "N" || regTrue == "n")
+                                        {
+                                            Console.WriteLine("Good bye.");
+                                            break;
+                                        }
+                                        else
+                                            Console.WriteLine("Invalid option entered.");
+                                    }
+                                    break;
+                                }
                                 break;
                             }
                         }
                     }
-                    if (option == "2") //Generate Report
+                    if (option == "2")
                     {
                         // To be implemented.
+                    }
+                    if (option == "3")
+                    {
+                        for (int i = 0; i < userList.Count; i++)
+                        {
+                            Console.WriteLine(userList[i]);
+                        }
+                        for (int i = 0; i < managerList.Count; i++)
+                        {
+                            Console.WriteLine(managerList[i].userID + "\t" + managerList[i].Role);
+                        }
+                        //foreach (User user in userList)
+                        //{
+                        //    if (user.Role == "Employee")
+                        //    {
+                        //        for 
+                        //    }
+                        //    //Console.WriteLine(user.userID +"\t"+ user.Password + "\t" + user.);
+                        //}
                     }
                     else if (option == "0")
                         break;
