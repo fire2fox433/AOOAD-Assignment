@@ -457,14 +457,45 @@ namespace AOOAD
                             }
                         }
                     }
-                    if (option == "2")
+                    if (option == "2") //Generate Report
                     {
                         // To be implemented.
                     }
+                    else if (option == "0")
+                        break;
                 }
             }
-            else if (loggedinManager != null)
+            else if (loggedinManager != null) //added by ee zher
             {
+                while (true)
+                {
+                    RptMenu();
+                    string option = Console.ReadLine();
+                    if (option == "1") //Assign Ticket
+                        Console.WriteLine("Hello");
+                    else if (option == "2") //Generate Report
+                    {
+                        RMenu();
+                        string alphaOpt = Console.ReadLine();
+                        if (alphaOpt == "a" || alphaOpt == "A")
+                        {
+                            //View all Solved/Closed Tickets
+                        }
+                        else if (alphaOpt == "b" || alphaOpt == "B")
+                        {
+                            //View all Unsolved/Open Tickets
+                        }
+                        else if (alphaOpt == "c" || alphaOpt == "C")
+                        {
+                            //View a Tickets by choosing a Member
+                        }
+                        Console.WriteLine("Bye");
+                    }
+                    else if (option == "0")
+                        break;
+                    else
+                        Console.WriteLine("Wrong input");
+                }
             }
             else if (loggedinEmployee != null)
             {
@@ -478,26 +509,48 @@ namespace AOOAD
 
 
 		}
-		public static void Itmenu()
+		public static void Itmenu() //added option 0 by ee zher
 		{
 			Console.WriteLine("-----------------------------");
 			Console.WriteLine("1. Share a ticket");
+            Console.WriteLine("0. Logout");
 			Console.WriteLine("Please enter your preferred option: ");
 		}
 
         // Seanmarcus Admin Menu
-        public static void  AdminMenu()
+        public static void  AdminMenu() //added option 0 by ee zher
         {
             Console.WriteLine("-----------------------------");
             Console.WriteLine("1. Register User");
             Console.WriteLine("2. Generate Report");
+            Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }
+
+        public static void RptMenu() //added by ee zher
+        {
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("1. Assign Ticket to a IT member");
+            Console.WriteLine("2. Generate Report");
+            Console.WriteLine("0. Logout");
+            Console.WriteLine("Please enter your preferred option: ");
+        }
+
+        public static void EmpyMenu() //added by ee zher
+        {
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("1. View online help");
+            Console.WriteLine("0. Logout");
+            Console.WriteLine("Please enter your preferred option: ");
+        }
+
+        public static void RMenu() //added by ee zher
+        {
+            Console.WriteLine("a: Print all Solved Ticket");
+            Console.WriteLine("b: Print all Unsolved Ticket");
+            Console.WriteLine("c: Print a IT Member's Ticket List");
+        }
 	}
-
-
-		
-
 
 
 }
