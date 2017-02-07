@@ -196,8 +196,8 @@ namespace AOOAD
                 {
                     AdminMenu();
                     string option = Console.ReadLine();
-                    if (option != "0" || option != "1" || option != "2" || option != "3")
-                        Console.WriteLine("Invalid option inputted!");
+                    //if (option != "0" || option != "1" || option != "2" || option != "3")
+                    //    Console.WriteLine("Invalid option inputted!");
                     if (option == "1")
                     {
                         //List<string> register = new List<string>();
@@ -240,27 +240,6 @@ namespace AOOAD
                                             reg = false;
                                         }
                                     }
-                                    //for (int i = 0; i < employeeList.Count; i++)
-                                    //{
-                                    //    if (employeeList[i].userID == userid)
-                                    //    {
-                                    //        reg = false;
-                                    //    }
-                                    //}
-                                    //for (int i = 0; i < ITSupportMemberList.Count; i++)
-                                    //{
-                                    //    if (ITSupportMemberList[i].userID == userid)
-                                    //    {
-                                    //        reg = false;
-                                    //    }
-                                    //}
-                                    //for (int i = 0; i < managerList.Count; i++)
-                                    //{
-                                    //    if (managerList[i].userID == userid)
-                                    //    {
-                                    //        reg = false;
-                                    //    }
-                                    //}
                                     if (reg && userid != "")
                                         break;
                                     if (reg == false)
@@ -593,11 +572,11 @@ namespace AOOAD
                             }
                         }
                     }
-                    if (option == "2")
+                    else if (option == "2")
                     {
                         // To be implemented.
                     }
-                    if (option == "3")
+                    else if (option == "3")
                     {
                         for (int i = 0; i < userList.Count; i++)
                         {
@@ -607,19 +586,11 @@ namespace AOOAD
                         {
                             Console.WriteLine(managerList[i].userID + "\t" + managerList[i].userType);
                         }
-                        //foreach (User user in userList)
-                        //{
-                        //    if (user.Role == "Employee")
-                        //    {
-                        //        for 
-                        //    }
-                        //    //Console.WriteLine(user.userID +"\t"+ user.Password + "\t" + user.);
-                        //}
                     }
                     else if (option == "0")
                         break;
-                    //else
-                    //    Console.WriteLine("Invalid option inputted!");
+                    else
+                        Console.WriteLine("Invalid option inputted!");
                 }
             }
             else if (loggedinManager != null) //added by ee zher
