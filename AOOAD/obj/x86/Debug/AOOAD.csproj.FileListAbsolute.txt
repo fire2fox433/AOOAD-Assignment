@@ -13,3 +13,5 @@ C:\Users\seanm_000\Source\Repos2\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.pdb
 C:\Users\seanm_000\Source\Repos2\AOOAD-Assignment\AOOAD\bin\Debug\AOOAD.exe
 C:\Users\seanm_000\Source\Repos2\AOOAD-Assignment\AOOAD\bin\Debug\AOOAD.pdb
 C:\Users\seanm_000\Source\Repos2\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.csprojResolveAssemblyReference.cache
+C:\Users\EeZhe\Downloads\snortrules\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.exe
+C:\Users\EeZhe\Downloads\snortrules\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.pdb
