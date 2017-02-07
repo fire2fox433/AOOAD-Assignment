@@ -610,11 +610,25 @@ namespace AOOAD
                         string alphaOpt = Console.ReadLine();
                         if (alphaOpt == "a" || alphaOpt == "A")
                         {
-                            //View all Solved/Closed Tickets
+                            //View all Solved Tickets
+                            foreach (Ticket tick in ticketList)
+                            {
+                                if (tick.Solved == true)
+                                {
+                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                }
+                            }
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
-                            //View all Unsolved/Open Tickets
+                            //View all Unsolved Tickets
+                            foreach (Ticket tick in ticketList)
+                            {
+                                if (tick.Solved == false)
+                                {
+                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc, tick.Solved);
+                                }
+                            }
                         }
                     }
                     else if (option == "0")
