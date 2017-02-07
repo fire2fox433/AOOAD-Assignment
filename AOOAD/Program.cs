@@ -82,20 +82,14 @@ namespace AOOAD
 				{
 					break;
 				}
-				for (int i = 0; i < adminList.Count; i++)
+				if (adminAccount.userID == username && adminAccount.Password == password)
 				{
-					if (adminList[i].userID == username && adminList[i].Password == password)
-					{
-						loggedinAdmin = adminList[i];
-						Console.WriteLine("You have successfully logged in!");
-						loggedin = true;
-						break;
-					}
-				}
-				if (loggedin == true)
-				{
+					loggedinAdmin = adminAccount;
+					Console.WriteLine("Welcome Administrator.");
+					loggedin = true;
 					break;
 				}
+
 				if (loggedin == false)
 				{
 					Console.WriteLine("Error, no such user found.");
