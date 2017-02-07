@@ -16,4 +16,34 @@ namespace AOOAD
 			this.userType = "ITSupportMember";
 		}
 	}
+    //public class TicketList:Subject
+    //{
+    //    private List<Observer> observers;
+    //    private string comment;
+
+    //    public TicketList()
+    //    {
+    //        observers = new List<Observer>();
+    //    }
+
+    //    public void registerObserver(Observer o)
+    //    {
+    //        observers.Add(o);
+    //    }
+
+    //    public void removeObserver(Observer o)
+    //    {
+    //        observers.Remove(o);
+    //    }
+
+    //    public void notifyObservers()
+    //    {
+    //        foreach (Observer o in observers)
+    //            o.update(comment);
+    //    }
+    //    public void measurementsChanged()
+    //    {
+    //        notifyObservers();
+    //    }
+    //}
 }
