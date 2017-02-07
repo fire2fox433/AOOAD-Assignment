@@ -579,17 +579,17 @@ namespace AOOAD
                     {
                         // To be implemented.
                     }
-                    else if (option == "3")
-                    {
-                        for (int i = 0; i < userList.Count; i++)
-                        {
-                            Console.WriteLine(userList[i]);
-                        }
-                        for (int i = 0; i < managerList.Count; i++)
-                        {
-                            Console.WriteLine(managerList[i].userID + "\t" + managerList[i].userType);
-                        }
-                    }
+                    //else if (option == "3")
+                    //{
+                    //    for (int i = 0; i < userList.Count; i++)
+                    //    {
+                    //        Console.WriteLine(userList[i]);
+                    //    }
+                    //    for (int i = 0; i < managerList.Count; i++)
+                    //    {
+                    //        Console.WriteLine(managerList[i].userID + "\t" + managerList[i].userType);
+                    //    }
+                    //}
                     else if (option == "0")
                         break;
                     else
