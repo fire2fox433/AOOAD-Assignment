@@ -601,7 +601,7 @@ namespace AOOAD
                         }
                         for (int i = 0; i < managerList.Count; i++)
                         {
-                            Console.WriteLine(managerList[i].userID + "\t" + managerList[i].Role);
+                            Console.WriteLine(managerList[i].userID + "\t" + managerList[i].userType);
                         }
                         //foreach (User user in userList)
                         //{
