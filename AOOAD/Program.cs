@@ -12,7 +12,7 @@ namespace AOOAD
 
 			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
             List<object> userList = new List<object>(); // new added v2 sean
-            ITSupportMember newUser = new ITSupportMember("123", "123", "123", "123", "123");
+            ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
             userList.Add(newUser); // added v2
             Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", " ", newUser, null , "fking bad", 10 ,null); //added the 1 by ee zher
 			ITSupportMemberList.Add(newUser);
@@ -21,7 +21,7 @@ namespace AOOAD
             newTicket2.Solved = true; //added v2 by ee zher
             ticketList.Add(newTicket2); //added v2 by ee zher
             newUser = null;
-			newUser = new ITSupportMember("234", "123", "123", "123", "123");
+			newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
 			ITSupportMemberList.Add(newUser);
             userList.Add(newUser); // added v2
             List<Report> reportList = new List<Report>();
@@ -603,7 +603,12 @@ namespace AOOAD
                     RptMenu();
                     string option = Console.ReadLine();
                     if (option == "1") //Assign Ticket
-                        Console.WriteLine("Hello");
+                    {
+                        foreach (ITSupportMember Member in ITSupportMemberList)
+                        {
+                            Console.WriteLine("{0} & {1} & {2}",Member.userID,Member.FirstName,Member.LastName);
+                        }
+                    }
                     else if (option == "2") //Generate Report
                     {
                         RMenu();
