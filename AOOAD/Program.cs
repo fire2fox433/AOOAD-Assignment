@@ -577,7 +577,56 @@ namespace AOOAD
                     }
                     else if (option == "2")
                     {
-                        // To be implemented.
+                        RMenu();
+                        string alphaOpt = Console.ReadLine();
+                        if (alphaOpt == "a" || alphaOpt == "A")
+                        {
+                            //View all Solved Tickets
+                            foreach (Ticket tick in ticketList)
+                            {
+                                if (tick.Solved == true)
+                                {
+                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                }
+                            }
+                        }
+                        else if (alphaOpt == "b" || alphaOpt == "B")
+                        {
+                            //View all Unsolved Tickets
+                            foreach (Ticket tick in ticketList)
+                            {
+                                if (tick.Solved == false)
+                                {
+                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                }
+                            }
+                        }
+                        else if (alphaOpt == "c" || alphaOpt == "C")
+                        {
+                            //View all tickets assigned by an IT member
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
+                            }
+                            Console.WriteLine("Select the User you wish to view");
+                            string memID = Console.ReadLine();
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                if (Member.userID == memID)
+                                {
+                                    foreach (Ticket tick in ticketList)
+                                    {
+                                        if (tick.Raised_by == Member)
+                                        {
+                                            if (tick.Solved == true)
+                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                            else if (tick.Solved == false)
+                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     //else if (option == "3")
                     //{
@@ -717,9 +766,12 @@ namespace AOOAD
 
         public static void RMenu() //added by ee zher
         {
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine("a: View all Solved Ticket");
             Console.WriteLine("b: View all Unsolved Ticket");
             Console.WriteLine("c: View all Tickets assigned by a user");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine("Please enter your preferred option: ");
         }
 	}
 
