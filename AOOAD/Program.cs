@@ -28,7 +28,7 @@ namespace AOOAD
 			List<Employee> employeeList = new List<Employee>();
 			List<ReportManager> managerList = new List<ReportManager>();
 			Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
-            userList.Add(newUser); // added v2
+            userList.Add(adminAccount); // added v2
             ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
             managerList.Add(newReportManager); // added by seanmarcus
             userList.Add(newUser); // added v2
