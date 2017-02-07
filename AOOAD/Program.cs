@@ -613,11 +613,6 @@ namespace AOOAD
                         {
                             //View all Unsolved/Open Tickets
                         }
-                        else if (alphaOpt == "c" || alphaOpt == "C")
-                        {
-                            //View a Tickets by choosing a Member
-                        }
-                        Console.WriteLine("Bye");
                     }
                     else if (option == "0")
                         break;
@@ -676,7 +671,6 @@ namespace AOOAD
         {
             Console.WriteLine("a: Print all Solved Ticket");
             Console.WriteLine("b: Print all Unsolved Ticket");
-            Console.WriteLine("c: Print a IT Member's Ticket List");
         }
 	}
 
