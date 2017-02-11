@@ -15,10 +15,11 @@ namespace AOOAD
 			List<ReportManager> managerList = new List<ReportManager>();
 
             ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
-            ticketList[0].incharge = newUser;
+            
             Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null); //added the 1 by ee zher
             ITSupportMemberList.Add(newUser);
             ticketList.Add(newTicket1); //added the 1 by ee zher
+            ticketList[0].incharge = newUser;
 
             Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
             newTicket2.Solved = true; //added v2 by ee zher
@@ -699,7 +700,7 @@ namespace AOOAD
                                 {
                                     foreach (Ticket tick in ticketList)
                                     {
-                                        if (tick.Raised_by == Member)
+                                        if (tick.incharge == Member)
                                         {
                                             if (tick.Solved == true)
                                                 Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);

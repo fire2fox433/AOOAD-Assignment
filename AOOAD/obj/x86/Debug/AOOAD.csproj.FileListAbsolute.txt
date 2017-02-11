@@ -22,3 +22,6 @@ C:\Users\EeZhe\Downloads\AOOAD\AOAD Week 13\AOOAD-Assignment\AOOAD\obj\x86\Debug
 C:\Users\EeZhe\Downloads\AOOAD\AOAD Week 13\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.pdb
 C:\Users\cheny\Source\Repos\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.exe
 C:\Users\cheny\Source\Repos\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.pdb
+C:\Users\cheny\Source\Repos\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.csprojResolveAssemblyReference.cache
+C:\Users\cheny\Source\Repos\AOOAD-Assignment\AOOAD\bin\Debug\AOOAD.exe
+C:\Users\cheny\Source\Repos\AOOAD-Assignment\AOOAD\bin\Debug\AOOAD.pdb
