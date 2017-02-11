@@ -10,12 +10,11 @@ namespace AOOAD
     {
         TicketList myList;
         int position = 0;
-        bool solved;
 
         public TicketIterator(TicketList List, bool solved)
         {
             myList = List;
-            while ((position < myList.NumberOfTickets) && (myList.getInfo(position).Solved == solved))
+            while ((position < myList.NumberOfTickets) && (myList.getInfo(position).Solved != solved))
             {
                 position++;
             }
@@ -27,11 +26,20 @@ namespace AOOAD
             return false;
         }
 
-        public object next()
+        public object next(bool solved)
         {
             Ticket tick = myList.getInfo(position);
             position++;
-            while ((position < myList.NumberOfTickets) && (myList.getInfo(position).Solved == solved))
+            while ((position < myList.NumberOfTickets) && (myList.getInfo(position).Solved != solved))
+            {
+                position++;
+            }
+            return tick;
+        }
+        public object CurrentItem(bool solved)
+        {
+            Ticket tick = myList.getInfo(position);
+            while ((position < myList.NumberOfTickets) && (myList.getInfo(position).Solved != solved))
             {
                 position++;
             }
