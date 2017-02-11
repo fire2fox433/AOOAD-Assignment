@@ -193,6 +193,7 @@ namespace AOOAD
             }
             else if (loggedinAdmin != null)
             {
+                /*/
                 while (true)
                 {
                     AdminMenu();
@@ -642,6 +643,7 @@ namespace AOOAD
                     else
                         Console.WriteLine("Invalid option inputted!");
                 }
+                /*/
             }
             else if (loggedinManager != null) //added by ee zher
             {
