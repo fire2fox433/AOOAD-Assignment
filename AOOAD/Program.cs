@@ -8,6 +8,7 @@ namespace AOOAD
 		public static void Main(string[] args)
 		{
             TicketList ticketList = new TicketList(10); //added by ee zher
+            List<Problem> problemList = new List<Problem>();
 			//List<Ticket> ticketList = new List<Ticket>();
 			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
             List<Report> reportList = new List<Report>();
