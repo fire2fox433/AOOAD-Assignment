@@ -38,6 +38,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Ticket.cs" />
+    <Compile Include="TicketIterator.cs" />
+    <Compile Include="TicketList.cs" />
     <Compile Include="TicketState.cs" />
     <Compile Include="CloseState.cs" />
     <Compile Include="User.cs" />

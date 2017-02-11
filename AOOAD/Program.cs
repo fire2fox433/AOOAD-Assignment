@@ -7,8 +7,8 @@ namespace AOOAD
 	{
 		public static void Main(string[] args)
 		{
-			
-			List<Ticket> ticketList = new List<Ticket>();
+            TicketList ticketList = new TicketList(10); //added by ee zher
+			//List<Ticket> ticketList = new List<Ticket>();
 			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
             List<Report> reportList = new List<Report>();
 			List<Employee> employeeList = new List<Employee>();
@@ -18,15 +18,17 @@ namespace AOOAD
             
             Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null); //added the 1 by ee zher
             ITSupportMemberList.Add(newUser);
-            ticketList.Add(newTicket1); //added the 1 by ee zher
-            ticketList[0].incharge = newUser;
+            newTicket1.incharge = newUser; // can't you put it like that???
+            ticketList.add(newTicket1); //added the 1 by ee zher
+            //ticketList[0].incharge = newUser; //commented out by ee zher
 
             Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
             newTicket2.Solved = true; //added v2 by ee zher
-            ticketList.Add(newTicket2); //added v2 by ee zher
+            ticketList.add(newTicket2); //added v2 by ee zher
             newUser = null;
             newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
-            ticketList[1].incharge = newUser;
+            newTicket2.incharge = newUser;
+            //ticketList[1].incharge = newUser; //commented out by ee zher
             ITSupportMemberList.Add(newUser);
             Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
             ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
@@ -109,13 +111,13 @@ namespace AOOAD
 						List<Ticket> openList = new List<Ticket>();
 						Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
 						int no = 0;
-						for (int i = 0; i < ticketList.Count; i++)
+						for (int i = 0; i < ticketList.NumberOfTickets; i++)
 						{
-							if (ticketList[i].viewStatus() == "open")
+							if (ticketList.getInfo(i).viewStatus() == "open")
 							{
 								no = no + 1;
-								openList.Add(ticketList[i]);
-								Console.WriteLine(no + "\t" + ticketList[i].TicketID + "\t\t" + ticketList[i].Problem_desc + "\t" + ticketList[i].Solved);
+								openList.Add(ticketList.getInfo(i));
+								Console.WriteLine(no + "\t" + ticketList.getInfo(i).TicketID + "\t\t" + ticketList.getInfo(i).Problem_desc + "\t" + ticketList.getInfo(i).Solved);
 
 							}
 						}
@@ -152,12 +154,12 @@ namespace AOOAD
 							{
 								if (ITSupportMemberList[i].userID == shareusername)
 								{
-									for (int y = 0; y < ticketList.Count; y++)
+									for (int y = 0; y < ticketList.NumberOfTickets; y++)
 									{
-										if (ticketList[y] == selectedShareTicket)
+										if (ticketList.getInfo(y) == selectedShareTicket)
 										{
-											ticketList[y].sharedList.Add(ITSupportMemberList[i]);
-											ITSupportMemberList[i].sharedList.Add(ticketList[y]);
+											ticketList.getInfo(y).sharedList.Add(ITSupportMemberList[i]);
+											ITSupportMemberList[i].sharedList.Add(ticketList.getInfo(y));
 											sharesuccess = true;
 										}
 									}
@@ -666,24 +668,24 @@ namespace AOOAD
                         if (alphaOpt == "a" || alphaOpt == "A")
                         {
                             //View all Solved Tickets
-                            foreach (Ticket tick in ticketList)
-                            {
-                                if (tick.Solved == true)
-                                {
-                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                                }
-                            }
+                            //foreach (Ticket tick in ticketList)
+                            //{
+                            //    if (tick.Solved == true)
+                            //    {
+                            //        Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                            //    }
+                            //}
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
                             //View all Unsolved Tickets
-                            foreach (Ticket tick in ticketList)
-                            {
-                                if (tick.Solved == false)
-                                {
-                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                                }
-                            }
+                            //foreach (Ticket tick in ticketList)
+                            //{
+                            //    if (tick.Solved == false)
+                            //    {
+                            //        Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                            //    }
+                            //}
                         }
                         else if (alphaOpt == "c" || alphaOpt == "C")
                         {
@@ -696,19 +698,19 @@ namespace AOOAD
                             string memID = Console.ReadLine();
                             foreach (ITSupportMember Member in ITSupportMemberList)
                             {
-                                if (Member.userID == memID)
-                                {
-                                    foreach (Ticket tick in ticketList)
-                                    {
-                                        if (tick.incharge == Member)
-                                        {
-                                            if (tick.Solved == true)
-                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                                            else if (tick.Solved == false)
-                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                                        }
-                                    }
-                                }
+                                //if (Member.userID == memID)
+                                //{
+                                //    foreach (Ticket tick in ticketList)
+                                //    {
+                                //        if (tick.incharge == Member)
+                                //        {
+                                //            if (tick.Solved == true)
+                                //                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                //            else if (tick.Solved == false)
+                                //                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                //        }
+                                //    }
+                                //}
                             }
                         }
                     }
