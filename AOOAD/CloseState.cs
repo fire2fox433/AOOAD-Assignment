@@ -29,7 +29,7 @@ namespace AOOAD
 		{
 			Console.WriteLine("The ticket is already closed!");
 		}
-		public void commentTicket(string comment)
+		public void commentTicket(string comment, ITSupportMember member)
 		{
 			Console.WriteLine("You cannot comment on a closed ticket!");
 		}
@@ -39,7 +39,7 @@ namespace AOOAD
 		}
 		public void assignMember(ITSupportMember member)
 		{
-			Console.WriteLine("You cannot assign a ITSupportMember to a member!");
+			Console.WriteLine("You cannot assign a ITSupportMember to a closed ticket!");
 		}
 	}
 }

@@ -80,28 +80,16 @@ namespace AOOAD
 				this.module_name = value;
 			}
 		}
-		private ITSupportMember raised_by;
-		public ITSupportMember Raised_by
+		private ITSupportMember inCharge;
+		public ITSupportMember incharge
 		{
 			get
 			{
-				return this.raised_by;
+				return this.inCharge;
 			}
 			set
 			{
-				this.raised_by = value;
-			}
-		}
-		private ITSupportMember assignee;
-		public ITSupportMember Assignee
-		{
-			get
-			{
-				return this.assignee;
-			}
-			set
-			{
-				this.assignee = value;
+				this.inCharge = value;
 			}
 		}
 		private string severity;
@@ -196,8 +184,21 @@ namespace AOOAD
 			{
 				this.solved = value;
 			}
+
 		}
-		public List<User> sharedList = new List<User>();
+        private Problem myProblem;
+        public Problem myproblem
+        {
+            get
+            {
+                return this.myProblem;
+            }
+            set
+            {
+                this.myProblem = value;
+            }
+        }
+        public List<User> sharedList = new List<User>();
 		public void setStatus(TicketState state)
 		{
 			this.status = state;
@@ -212,7 +213,8 @@ namespace AOOAD
 				return "close";
 			}
 		}
-		public Ticket(string id, string category, string problem, string system, string module, ITSupportMember raised, ITSupportMember assignee, string severity, int priority, Employee employee)
+
+		public Ticket(string id, string category, string problem, string system, string module, string severity, int priority, Employee employee)
 		{
 			OPEN = new OpenState(this);
 			CLOSE = new CloseState(this);
@@ -222,13 +224,12 @@ namespace AOOAD
 			this.problem_desc = problem;
 			this.system_name = system;
 			this.module_name = module;
-			this.raised_by = raised;
-			this.assignee = assignee;
 			this.severity = severity;
 			this.priority = priority;
 			this.employee = employee;
 			this.open_time = DateTime.Now;
 			this.solved = false;
+            this.incharge = null;
 		}
 	}
 	

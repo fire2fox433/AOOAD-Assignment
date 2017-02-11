@@ -9,29 +9,27 @@ namespace AOOAD
 		{
 			
 			List<Ticket> ticketList = new List<Ticket>();
-
 			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
-            List<object> userList = new List<object>(); // new added v2 sean
-            ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
-            userList.Add(newUser); // added v2
-            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", " ", newUser, null , "fking bad", 10 ,null); //added the 1 by ee zher
-			ITSupportMemberList.Add(newUser);
-			ticketList.Add(newTicket1); //added the 1 by ee zher
-            Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", " ", newUser, null, "Super good", 0, null); //added v2 by ee zher
-            newTicket2.Solved = true; //added v2 by ee zher
-            ticketList.Add(newTicket2); //added v2 by ee zher
-            newUser = null;
-			newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
-			ITSupportMemberList.Add(newUser);
-            userList.Add(newUser); // added v2
             List<Report> reportList = new List<Report>();
 			List<Employee> employeeList = new List<Employee>();
 			List<ReportManager> managerList = new List<ReportManager>();
-			Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
-            userList.Add(adminAccount); // added v2
+
+            ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
+            ticketList[0].incharge = newUser;
+            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null); //added the 1 by ee zher
+            ITSupportMemberList.Add(newUser);
+            ticketList.Add(newTicket1); //added the 1 by ee zher
+
+            Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
+            newTicket2.Solved = true; //added v2 by ee zher
+            ticketList.Add(newTicket2); //added v2 by ee zher
+            newUser = null;
+            newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
+            ticketList[1].incharge = newUser;
+            ITSupportMemberList.Add(newUser);
+            Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
             ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
             managerList.Add(newReportManager); // added by seanmarcus
-            userList.Add(newUser); // added v2
             bool loggedin = false;
 			ITSupportMember loggedinIT = null;
 			Employee loggedinEmployee = null;
