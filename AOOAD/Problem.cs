@@ -59,7 +59,7 @@ namespace AOOAD
         }
         public bool hasProblem(string system, string problemdesc)
         {
-            if(this.system_name == system || this.problem_desc == problemdesc)
+            if(this.system_name == system && this.problem_desc == problemdesc)
             {
                 return true;
             }

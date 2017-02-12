@@ -13,30 +13,30 @@ using System.Linq;
 
 namespace AOOAD
 {
-	class MainClass
-	{
-		public static void Main(string[] args)
-		{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
             //Preinitialising Lists
             TicketList ticketList = new TicketList(10);
             List<Problem> problemList = new List<Problem>();
-			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
+            List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
             List<Report> reportList = new List<Report>();
-			List<Employee> employeeList = new List<Employee>();
-			List<ReportManager> managerList = new List<ReportManager>();
+            List<Employee> employeeList = new List<Employee>();
+            List<ReportManager> managerList = new List<ReportManager>();
             //Preinitialising Accounts, Tickets, Variables for login
             ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
             ITSupportMember newMember = new ITSupportMember("345", "345", "hehe", "xd", "123");
             ITSupportMemberList.Add(newMember);
-            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null);
+            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "bad", 10, null);
             ITSupportMemberList.Add(newUser);
             newTicket1.incharge = newUser;
             newUser.ticketList.Add(newTicket1);
             ticketList.add(newTicket1);
             Ticket newTicket2 = new Ticket("135", "135", "harddisk drive died", "Mac IOS", null, "Super good", 0, null);
             newTicket2.Solved = true;
-            ticketList.add(newTicket2); 
-            newUser.ticketList.Add(newTicket2); 
+            ticketList.add(newTicket2);
+            newUser.ticketList.Add(newTicket2);
             newUser = new ITSupportMember("234", "123", "Matthew", "Chan", "123");
             newTicket2.incharge = newUser;
             ITSupportMemberList.Add(newUser);
@@ -44,178 +44,187 @@ namespace AOOAD
             ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
             managerList.Add(newReportManager); // added by seanmarcus
             bool loggedin = false;
-			ITSupportMember loggedinIT = null;
-			Employee loggedinEmployee = null;
-			ReportManager loggedinManager = null;
-			Admin loggedinAdmin = null;
+            ITSupportMember loggedinIT = null;
+            Employee loggedinEmployee = null;
+            ReportManager loggedinManager = null;
+            Admin loggedinAdmin = null;
 
 
             // login
-			while (loggedin == false)
-			{
-				Console.WriteLine("Please login \nUsername: ");
-				string username = Console.ReadLine();
-				Console.WriteLine("Password: ");
-				string password = Console.ReadLine();
-				for (int i = 0; i < ITSupportMemberList.Count; i++)
-				{
-					if (ITSupportMemberList[i].userID == username && ITSupportMemberList[i].Password == password)
-					{
-						loggedinIT = ITSupportMemberList[i];
-						Console.WriteLine("You have successfully logged in!");
-						loggedin = true;
-						break;
-					}
-				}
-				if (loggedin == true)
-				{
-					break;
-				}
-				for (int i = 0; i < employeeList.Count; i++)
-				{
-					if (employeeList[i].userID == username && employeeList[i].Password == password)
-					{
-						loggedinEmployee = employeeList[i];
-						Console.WriteLine("You have successfully logged in!");
-						loggedin = true;
-						break;
-					}
-				}
-				if (loggedin == true)
-				{
-					break;
-				}
-				for (int i = 0; i < managerList.Count; i++)
-				{
-					if (managerList[i].userID == username && managerList[i].Password == password)
-					{
-						loggedinManager = managerList[i];
-						Console.WriteLine("You have successfully logged in!");
-						loggedin = true;
-						break;
-					}
-				}
-				if (loggedin == true)
-				{
-					break;
-				}
-				if (adminAccount.userID == username && adminAccount.Password == password)
-				{
-					loggedinAdmin = adminAccount;
-					Console.WriteLine("Welcome Administrator.");
-					loggedin = true;
-					break;
-				}
+            while (loggedin == false)
+            {
+                Console.WriteLine("Please login \nUsername: ");
+                string username = Console.ReadLine();
+                Console.WriteLine("Password: ");
+                string password = Console.ReadLine();
+                for (int i = 0; i < ITSupportMemberList.Count; i++)
+                {
+                    if (ITSupportMemberList[i].userID == username && ITSupportMemberList[i].Password == password)
+                    {
+                        loggedinIT = ITSupportMemberList[i];
+                        Console.WriteLine("You have successfully logged in!");
+                        loggedin = true;
+                        break;
+                    }
+                }
+                if (loggedin == true)
+                {
+                    break;
+                }
+                for (int i = 0; i < employeeList.Count; i++)
+                {
+                    if (employeeList[i].userID == username && employeeList[i].Password == password)
+                    {
+                        loggedinEmployee = employeeList[i];
+                        Console.WriteLine("You have successfully logged in!");
+                        loggedin = true;
+                        break;
+                    }
+                }
+                if (loggedin == true)
+                {
+                    break;
+                }
+                for (int i = 0; i < managerList.Count; i++)
+                {
+                    if (managerList[i].userID == username && managerList[i].Password == password)
+                    {
+                        loggedinManager = managerList[i];
+                        Console.WriteLine("You have successfully logged in!");
+                        loggedin = true;
+                        break;
+                    }
+                }
+                if (loggedin == true)
+                {
+                    break;
+                }
+                if (adminAccount.userID == username && adminAccount.Password == password)
+                {
+                    loggedinAdmin = adminAccount;
+                    Console.WriteLine("Welcome Administrator.");
+                    loggedin = true;
+                    break;
+                }
 
-				if (loggedin == false)
-				{
-					Console.WriteLine("Error, no such user found.");
-				}
-			}
+                if (loggedin == false)
+                {
+                    Console.WriteLine("Error, no such user found.");
+                }
+            }
 
-			//IT Support Member
-			if (loggedinIT != null)
-			{
-				while (true)
-				{
-					Itmenu();
-					string option = Console.ReadLine();
+            //IT Support Member
+            if (loggedinIT != null)
+            {
+                while (true)
+                {
+                    Itmenu();
+                    string option = Console.ReadLine();
                     //yifan's usecase - Share ticket
-					if (option == "1")
-					{
-                        //placing all the open tickets into a list and display it
-						List<Ticket> openList = new List<Ticket>();
-						Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
-						int no = 0;
-						for (int i = 0; i < ticketList.NumberOfTickets; i++)
-						{
-							if (ticketList.getInfo(i).viewStatus() == "open")
-							{
-								no = no + 1;
-								openList.Add(ticketList.getInfo(i));
-								Console.WriteLine(no + "\t" + ticketList.getInfo(i).TicketID + "\t\t" + ticketList.getInfo(i).Problem_desc + "\t" + ticketList.getInfo(i).Solved);
-
-							}
-						}
-						string ticketOption = "0";
-                        //user selecting ticket
-						while (true)
-						{
-							Console.WriteLine("Please enter the ticket you want to pick: ");
-							ticketOption = Console.ReadLine();
-							if (openList.Count < Convert.ToInt32(ticketOption) || Convert.ToInt32(ticketOption) < 1)
-							{
-								Console.WriteLine("Invalid ticket option!");
-							}
-							else
-							{
-								break;
-							}
-						}
-						Ticket selectedShareTicket = openList[Convert.ToInt32(ticketOption) - 1];
-                        //sharing ticket based on userID
-						bool sharesuccess = false;
-						while (sharesuccess == false)
-						{
-							string shareusername = loggedinIT.userID;
-							while (shareusername == loggedinIT.userID)
-							{
-								Console.WriteLine("Please enter the username you want to share to: ");
-								shareusername = Console.ReadLine();
-                                //check for self share
-								if (shareusername == loggedinIT.userID)
-								{
-									Console.WriteLine("You cannot share to yourself!");
-								}
-
-							}
-                            //check if valid userid and share
-							for (int i = 0; i < ITSupportMemberList.Count; i++)
-							{
-								if (ITSupportMemberList[i].userID == shareusername)
-								{
-									for (int y = 0; y < ticketList.NumberOfTickets; y++)
-									{
-										if (ticketList.getInfo(y) == selectedShareTicket)
-										{
-											ticketList.getInfo(y).sharedList.Add(ITSupportMemberList[i]);
-											ITSupportMemberList[i].sharedList.Add(ticketList.getInfo(y));
-											sharesuccess = true;
-										}
-									}
-								}
-								else
-								{
-									continue;
-								}
-							}
-							if (sharesuccess == false)
-							{
-								Console.WriteLine("No such username exists!");
-							}
-                            //asks if you want to share the ticket to more people
-							else if (sharesuccess == true)
-							{
-                                while (true)
+                    if (option == "1")
+                    {
+                        //checks whether if logged in user is in charge of anything
+                        if (loggedinIT.ticketList.Count != 0)
+                        {
+                            //placing all the open tickets into a list and display it
+                            List<Ticket> openList = new List<Ticket>();
+                            Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
+                            int no = 0;
+                            for (int i = 0; i < loggedinIT.ticketList.Count; i++)
+                            {
+                                if (loggedinIT.ticketList[i].viewStatus() == "open")
                                 {
-                                    Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
-                                    string yorn = Console.ReadLine();
-                                    if (yorn == "Y" || yorn == "y" || yorn == "YES" || yorn == "Yes" || yorn == "yes")
-                                    {
-                                        sharesuccess = false;
-                                        break;
-                                    }
-                                    else if (yorn == "n" || yorn == "N" || yorn == "No" || yorn == "NO" || yorn == "no")
-                                        break;
-                                    else
-                                        Console.WriteLine("Sorry, I couldn't understand that input, please try again.");
+                                    no = no + 1;
+                                    openList.Add(ticketList.getInfo(i));
+                                    Console.WriteLine(no + "\t" + ticketList.getInfo(i).TicketID + "\t\t" + ticketList.getInfo(i).Problem_desc + "\t" + ticketList.getInfo(i).Solved);
+
                                 }
-								
-							}
-						}
+                            }
+                            string ticketOption = "0";
+                            //user selecting ticket
+                            while (true)
+                            {
+                                Console.WriteLine("Please enter the ticket you want to pick: ");
+                                ticketOption = Console.ReadLine();
+                                if (openList.Count < Convert.ToInt32(ticketOption) || Convert.ToInt32(ticketOption) < 1)
+                                {
+                                    Console.WriteLine("Invalid ticket option!");
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            Ticket selectedShareTicket = openList[Convert.ToInt32(ticketOption) - 1];
+                            //sharing ticket based on userID
+                            bool sharesuccess = false;
+                            while (sharesuccess == false)
+                            {
+                                string shareusername = loggedinIT.userID;
+                                while (shareusername == loggedinIT.userID)
+                                {
+                                    Console.WriteLine("Please enter the username you want to share to: ");
+                                    shareusername = Console.ReadLine();
+                                    //check for self share
+                                    if (shareusername == loggedinIT.userID)
+                                    {
+                                        Console.WriteLine("You cannot share to yourself!");
+                                    }
+
+                                }
+                                //check if valid userid and share
+                                for (int i = 0; i < ITSupportMemberList.Count; i++)
+                                {
+                                    if (ITSupportMemberList[i].userID == shareusername)
+                                    {
+                                        for (int y = 0; y < ticketList.NumberOfTickets; y++)
+                                        {
+                                            if (ticketList.getInfo(y) == selectedShareTicket)
+                                            {
+                                                ticketList.getInfo(y).sharedList.Add(ITSupportMemberList[i]);
+                                                ITSupportMemberList[i].sharedList.Add(ticketList.getInfo(y));
+                                                sharesuccess = true;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+                                if (sharesuccess == false)
+                                {
+                                    Console.WriteLine("No such username exists!");
+                                }
+                                //asks if you want to share the ticket to more people
+                                else if (sharesuccess == true)
+                                {
+                                    while (true)
+                                    {
+                                        Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
+                                        string yorn = Console.ReadLine();
+                                        if (yorn == "Y" || yorn == "y" || yorn == "YES" || yorn == "Yes" || yorn == "yes")
+                                        {
+                                            sharesuccess = false;
+                                            break;
+                                        }
+                                        else if (yorn == "n" || yorn == "N" || yorn == "No" || yorn == "NO" || yorn == "no")
+                                            break;
+                                        else
+                                            Console.WriteLine("Sorry, I couldn't understand that input, please try again.");
+                                    }
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("You are not in charge of any tickets!");
+                        }
 
 
-					}
+
+                    }
                     else if (option == "2")
                     {
                         Console.WriteLine("Category\tProblem Desc\t\t\tSystem Name\tIn Charge\tStatus\tSolved\tShared With");
@@ -236,8 +245,8 @@ namespace AOOAD
                             {
                                 Console.WriteLine("{0} \t\t{1} \t\t{2} \t{3} \t{4} \t{5} \tNo shared users.", ticketList.getInfo(i).Category, ticketList.getInfo(i).Problem_desc, ticketList.getInfo(i).System_name, ticketList.getInfo(i).incharge.FirstName, ticketList.getInfo(i).viewStatus(), ticketList.getInfo(i).Solved);
                             }
-                            
-                            
+
+
                         }
                     }
                     else if (option == "3")
@@ -261,11 +270,11 @@ namespace AOOAD
                         Console.WriteLine("This function is not yet implemented.");
                     }
                     else if (option == "0")
-					{
-						Console.WriteLine("Logging out...");
-						break;
-					}
-				}
+                    {
+                        Console.WriteLine("Logging out...");
+                        break;
+                    }
+                }
 
             }
             //admin
@@ -667,9 +676,9 @@ namespace AOOAD
                         break;
                     else
                         Console.WriteLine("Invalid option inputted!");
-                    }
-
                 }
+
+            }
             //Report Manager
             else if (loggedinManager != null)
             {
@@ -681,7 +690,7 @@ namespace AOOAD
                     {
                         foreach (ITSupportMember Member in ITSupportMemberList)
                         {
-                            Console.WriteLine("ID: {0}   Name: {1} {2}",Member.userID,Member.FirstName,Member.LastName);
+                            Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
                         }
                         //Not implemented
                         Console.WriteLine("Assign Ticket is not implemented by our team");
@@ -695,7 +704,7 @@ namespace AOOAD
                             TicketIterator iIter = ticketList.createIterator(true);
                             while (iIter.hasNext() == true)
                             {
-                                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved",((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
+                                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", ((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
                             }
                             Report newrpt = new Report();
                             loggedinManager.reportList.Add(newrpt);
@@ -717,7 +726,7 @@ namespace AOOAD
                             //View all tickets assigned by an IT member
                             foreach (ITSupportMember Member in ITSupportMemberList)
                             {
-                                    Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
+                                Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
                             }
                             Console.WriteLine("Select the User you wish to view");
                             string memID = Console.ReadLine();
@@ -765,17 +774,17 @@ namespace AOOAD
                     else
                         Console.WriteLine("Invalid option inputted!");
                 }
-                    
+
             }
-		}
+        }
 
 
         //menus for each of the logins
         //IT Support Member Menu
-		public static void Itmenu()
-		{
-			Console.WriteLine("-----------------------------");
-			Console.WriteLine("1. Share a ticket");
+        public static void Itmenu()
+        {
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("1. Share a ticket");
             Console.WriteLine("2. View Ticket List");
             Console.WriteLine("3. Reopen Ticket // not implemented");
             Console.WriteLine("4. Raise Ticket");
@@ -783,11 +792,11 @@ namespace AOOAD
             Console.WriteLine("6. Comment Ticket // not implemented");
             Console.WriteLine("7. Solve Ticket // not implemented");
             Console.WriteLine("0. Logout");
-			Console.WriteLine("Please enter your preferred option: ");
-		}
+            Console.WriteLine("Please enter your preferred option: ");
+        }
 
         //Admin Menu
-        public static void  AdminMenu()
+        public static void AdminMenu()
         {
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("1. Register User");
@@ -796,7 +805,7 @@ namespace AOOAD
             Console.WriteLine("Please enter your preferred option: ");
         }
         //Report Manager Menu
-        public static void RptMenu() 
+        public static void RptMenu()
         {
             Console.WriteLine("-----------------------------");
             Console.WriteLine("1. Assign Ticket to a IT member");
