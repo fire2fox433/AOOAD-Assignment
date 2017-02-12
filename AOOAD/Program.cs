@@ -197,16 +197,12 @@ namespace AOOAD
             }
             else if (loggedinAdmin != null)
             {
-                /*/
                 while (true)
                 {
                     AdminMenu();
                     string option = Console.ReadLine();
-                    //if (option != "0" || option != "1" || option != "2" || option != "3")
-                    //    Console.WriteLine("Invalid option inputted!");
                     if (option == "1")
                     {
-                        //List<string> register = new List<string>();
                         string userOption = "0";
                         while (true)
                         {
@@ -239,13 +235,7 @@ namespace AOOAD
                                     reg = true;
                                     Console.WriteLine("Please enter the employee's user id:");
                                     userid = Console.ReadLine();
-                                    foreach (User user in userList)
-                                    {
-                                        if (user.userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
+                                    reg = isIDValid(ITSupportMemberList, employeeList, managerList, userid);
                                     if (reg && userid != "")
                                         break;
                                     if (reg == false)
@@ -286,13 +276,7 @@ namespace AOOAD
                                     reg = true;
                                     Console.WriteLine("Please enter email of the employee:");
                                     email = Console.ReadLine();
-                                    foreach (User user in userList)
-                                    {
-                                        if (user.Email == email)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
+                                    reg = isEmailValid(ITSupportMemberList, employeeList, managerList, email);
                                     if (reg && email != "")
                                         break;
                                     if (reg == false)
@@ -344,7 +328,7 @@ namespace AOOAD
                                         if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
                                         {
                                             Employee newEmployee = new Employee(userid, password, first, last, email, depNo, address, postal);
-                                            userList.Add(newEmployee);
+                                            employeeList.Add(newEmployee);
                                             Console.WriteLine(userid + " is successfully registered!");
                                             break;
                                         }
@@ -375,13 +359,7 @@ namespace AOOAD
                                     reg = true;
                                     Console.WriteLine("Please enter the IT Support Member's user id:");
                                     userid = Console.ReadLine();
-                                    foreach (User user in userList)
-                                    {
-                                        if (user.userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
+                                    reg = isIDValid(ITSupportMemberList, employeeList, managerList, userid);
                                     if (reg && userid != "")
                                         break;
                                     if (reg == false)
@@ -424,13 +402,7 @@ namespace AOOAD
                                     reg = true;
                                     Console.WriteLine("Please enter email of the IT Support Member:");
                                     email = Console.ReadLine();
-                                    foreach (User user in userList)
-                                    {
-                                        if (user.Email == email)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
+                                    reg = isEmailValid(ITSupportMemberList, employeeList, managerList, email);
                                     if (reg && email != "")
                                         break;
                                     if (reg == false)
@@ -454,7 +426,7 @@ namespace AOOAD
                                         {
                                             ITSupportMember newSupport = new ITSupportMember(userid, password, first, last, email);
                                             //ITSupportMemberList.Add(newSupport);
-                                            userList.Add(newSupport); // added v2
+                                            ITSupportMemberList.Add(newSupport); // added v2
                                             Console.WriteLine(userid + " is successfully registered!");
                                             break;
                                         }
@@ -485,13 +457,7 @@ namespace AOOAD
                                     reg = true;
                                     Console.WriteLine("Please enter the Reporting Manager's user id:");
                                     userid = Console.ReadLine();
-                                    foreach (User user in userList)
-                                    {
-                                        if (user.userID == userid)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
+                                    reg = isIDValid(ITSupportMemberList, employeeList, managerList, userid);
                                     if (reg && userid != "")
                                         break;
                                     if (reg == false)
@@ -530,13 +496,7 @@ namespace AOOAD
                                     reg = true;
                                     Console.WriteLine("Please enter email of the Reporting Manager:");
                                     email = Console.ReadLine();
-                                    foreach (User user in userList)
-                                    {
-                                        if (user.Email == email)
-                                        {
-                                            reg = false;
-                                        }
-                                    }
+                                    reg = isEmailValid(ITSupportMemberList, employeeList, managerList, email);
                                     if (reg && email != "")
                                         break;
                                     if (reg == false)
@@ -559,8 +519,7 @@ namespace AOOAD
                                         if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
                                         {
                                             ReportManager newManager = new ReportManager(userid, password, first, last, email);
-                                            //managerList.Add(newManager);
-                                            userList.Add(newManager); // added v2
+                                            managerList.Add(newManager);
                                             Console.WriteLine(userid + " is successfully registered!");
                                             break;
                                         }
@@ -578,59 +537,59 @@ namespace AOOAD
                             }
                         }
                     }
-                    else if (option == "2")
-                    {
-                        RMenu();
-                        string alphaOpt = Console.ReadLine();
-                        if (alphaOpt == "a" || alphaOpt == "A")
-                        {
-                            //View all Solved Tickets
-                            foreach (Ticket tick in ticketList)
-                            {
-                                if (tick.Solved == true)
-                                {
-                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                                }
-                            }
-                        }
-                        else if (alphaOpt == "b" || alphaOpt == "B")
-                        {
-                            //View all Unsolved Tickets
-                            foreach (Ticket tick in ticketList)
-                            {
-                                if (tick.Solved == false)
-                                {
-                                    Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                                }
-                            }
-                        }
-                        else if (alphaOpt == "c" || alphaOpt == "C")
-                        {
-                            //View all tickets assigned by an IT member
-                            foreach (ITSupportMember Member in ITSupportMemberList)
-                            {
-                                Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
-                            }
-                            Console.WriteLine("Select the User you wish to view");
-                            string memID = Console.ReadLine();
-                            foreach (ITSupportMember Member in ITSupportMemberList)
-                            {
-                                if (Member.userID == memID)
-                                {
-                                    foreach (Ticket tick in ticketList)
-                                    {
-                                        if (tick.Raised_by == Member)
-                                        {
-                                            if (tick.Solved == true)
-                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                                            else if (tick.Solved == false)
-                                                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    //else if (option == "2")
+                    //{
+                    //    RMenu();
+                    //    string alphaOpt = Console.ReadLine();
+                    //    if (alphaOpt == "a" || alphaOpt == "A")
+                    //    {
+                    //        //View all Solved Tickets
+                    //        foreach (Ticket tick in ticketList)
+                    //        {
+                    //            if (tick.Solved == true)
+                    //            {
+                    //                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                    //            }
+                    //        }
+                    //    }
+                    //    else if (alphaOpt == "b" || alphaOpt == "B")
+                    //    {
+                    //        //View all Unsolved Tickets
+                    //        foreach (Ticket tick in ticketList)
+                    //        {
+                    //            if (tick.Solved == false)
+                    //            {
+                    //                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                    //            }
+                    //        }
+                    //    }
+                    //    else if (alphaOpt == "c" || alphaOpt == "C")
+                    //    {
+                    //        //View all tickets assigned by an IT member
+                    //        foreach (ITSupportMember Member in ITSupportMemberList)
+                    //        {
+                    //            Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
+                    //        }
+                    //        Console.WriteLine("Select the User you wish to view");
+                    //        string memID = Console.ReadLine();
+                    //        foreach (ITSupportMember Member in ITSupportMemberList)
+                    //        {
+                    //            if (Member.userID == memID)
+                    //            {
+                    //                foreach (Ticket tick in ticketList)
+                    //                {
+                    //                    if (tick.Raised_by == Member)
+                    //                    {
+                    //                        if (tick.Solved == true)
+                    //                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                    //                        else if (tick.Solved == false)
+                    //                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
                     //else if (option == "3")
                     //{
                     //    for (int i = 0; i < userList.Count; i++)
@@ -647,7 +606,7 @@ namespace AOOAD
                     else
                         Console.WriteLine("Invalid option inputted!");
                 }
-                /*/
+                
             }
             else if (loggedinManager != null) //added by ee zher
             {
@@ -740,7 +699,7 @@ namespace AOOAD
         {
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("1. Register User");
-            Console.WriteLine("2. Generate Report");
+            //Console.WriteLine("2. Generate Report");
             Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }
@@ -771,7 +730,66 @@ namespace AOOAD
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine("Please enter your preferred option: ");
         }
-	}
 
-
+        // check if ID is valid
+        public static bool isIDValid(List<ITSupportMember> ITSupportMemberList, List<Employee> employeeList, List<ReportManager> managerList, string userid)
+        {
+            bool reg = true;
+            foreach (User user in ITSupportMemberList)
+            {
+                if (user.userID == userid)
+                {
+                    reg = false;
+                }
+            }
+            foreach (User user in employeeList)
+            {
+                if (user.userID == userid)
+                {
+                    reg = false;
+                }
+            }
+            foreach (User user in managerList)
+            {
+                if (user.userID == userid)
+                {
+                    reg = false;
+                }
+            }
+            if (reg)
+                return true;
+            else
+                return false;
+        }
+        // check if Email is valid
+        public static bool isEmailValid(List<ITSupportMember> ITSupportMemberList, List<Employee> employeeList, List<ReportManager> managerList, string email)
+        {
+            bool reg = true;
+            foreach (User user in ITSupportMemberList)
+            {
+                if (user.Email == email)
+                {
+                    reg = false;
+                }
+            }
+            foreach (User user in employeeList)
+            {
+                if (user.Email == email)
+                {
+                    reg = false;
+                }
+            }
+            foreach (User user in managerList)
+            {
+                if (user.Email == email)
+                {
+                    reg = false;
+                }
+            }
+            if (reg)
+                return true;
+            else
+                return false;
+        }
+    }
 }
