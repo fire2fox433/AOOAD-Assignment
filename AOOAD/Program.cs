@@ -40,9 +40,9 @@ namespace AOOAD
             newUser = new ITSupportMember("234", "123", "Matthew", "Chan", "123");
             newTicket2.incharge = newUser;
             ITSupportMemberList.Add(newUser);
-            Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); 
-            ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); 
-            managerList.Add(newReportManager); 
+            Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
+            ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
+            managerList.Add(newReportManager); // added by seanmarcus
             bool loggedin = false;
 			ITSupportMember loggedinIT = null;
 			Employee loggedinEmployee = null;
@@ -499,8 +499,7 @@ namespace AOOAD
                                         if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
                                         {
                                             ITSupportMember newSupport = new ITSupportMember(userid, password, first, last, email);
-                                            //ITSupportMemberList.Add(newSupport);
-                                            ITSupportMemberList.Add(newSupport); // added v2
+                                            ITSupportMemberList.Add(newSupport);
                                             Console.WriteLine(userid + " is successfully registered!");
                                             break;
                                         }
@@ -622,6 +621,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", ((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
@@ -630,6 +632,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", ((Ticket)iIter.CurrentItem(false)).TicketID, ((Ticket)iIter.next(false)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "c" || alphaOpt == "C")
                         {
@@ -653,6 +658,9 @@ namespace AOOAD
                                     }
                                 }
                             }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
                         }
                     }
                     else if (option == "0")
@@ -675,6 +683,8 @@ namespace AOOAD
                         {
                             Console.WriteLine("ID: {0}   Name: {1} {2}",Member.userID,Member.FirstName,Member.LastName);
                         }
+                        //Not implemented
+                        Console.WriteLine("Assign Ticket is not implemented by our team");
                     }
                     else if (option == "2") //Generate Report
                     {
@@ -687,6 +697,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved",((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
@@ -695,6 +708,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", ((Ticket)iIter.CurrentItem(false)).TicketID, ((Ticket)iIter.next(false)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "c" || alphaOpt == "C")
                         {
@@ -718,6 +734,9 @@ namespace AOOAD
                                     }
                                 }
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                     }
                     else if (option == "3")
