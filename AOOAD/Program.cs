@@ -539,77 +539,57 @@ namespace AOOAD
                             }
                         }
                     }
-                    //else if (option == "2")
-                    //{
-                    //    RMenu();
-                    //    string alphaOpt = Console.ReadLine();
-                    //    if (alphaOpt == "a" || alphaOpt == "A")
-                    //    {
-                    //        //View all Solved Tickets
-                    //        foreach (Ticket tick in ticketList)
-                    //        {
-                    //            if (tick.Solved == true)
-                    //            {
-                    //                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                    //            }
-                    //        }
-                    //    }
-                    //    else if (alphaOpt == "b" || alphaOpt == "B")
-                    //    {
-                    //        //View all Unsolved Tickets
-                    //        foreach (Ticket tick in ticketList)
-                    //        {
-                    //            if (tick.Solved == false)
-                    //            {
-                    //                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                    //            }
-                    //        }
-                    //    }
-                    //    else if (alphaOpt == "c" || alphaOpt == "C")
-                    //    {
-                    //        //View all tickets assigned by an IT member
-                    //        foreach (ITSupportMember Member in ITSupportMemberList)
-                    //        {
-                    //            Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
-                    //        }
-                    //        Console.WriteLine("Select the User you wish to view");
-                    //        string memID = Console.ReadLine();
-                    //        foreach (ITSupportMember Member in ITSupportMemberList)
-                    //        {
-                    //            if (Member.userID == memID)
-                    //            {
-                    //                foreach (Ticket tick in ticketList)
-                    //                {
-                    //                    if (tick.Raised_by == Member)
-                    //                    {
-                    //                        if (tick.Solved == true)
-                    //                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                    //                        else if (tick.Solved == false)
-                    //                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //}
-                    //else if (option == "3")
-                    //{
-                    //    for (int i = 0; i < userList.Count; i++)
-                    //    {
-                    //        Console.WriteLine(userList[i]);
-                    //    }
-                    //    for (int i = 0; i < managerList.Count; i++)
-                    //    {
-                    //        Console.WriteLine(managerList[i].userID + "\t" + managerList[i].userType);
-                    //    }
-                    //}
+                    else if (option == "2") //Generate Report
+                    {
+                        RMenu();
+                        string alphaOpt = Console.ReadLine();
+                        if (alphaOpt == "a" || alphaOpt == "A")
+                        {
+                            TicketIterator iIter = ticketList.createIterator(true);
+                            while (iIter.hasNext() == true)
+                            {
+                                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", ((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
+                            }
+                        }
+                        else if (alphaOpt == "b" || alphaOpt == "B")
+                        {
+                            TicketIterator iIter = ticketList.createIterator(false);
+                            while (iIter.hasNext() == true)
+                            {
+                                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", ((Ticket)iIter.CurrentItem(false)).TicketID, ((Ticket)iIter.next(false)).Problem_desc);
+                            }
+                        }
+                        else if (alphaOpt == "c" || alphaOpt == "C")
+                        {
+                            //View all tickets assigned by an IT member
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
+                            }
+                            Console.WriteLine("Select the User you wish to view");
+                            string memID = Console.ReadLine();
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                if (Member.userID == memID)
+                                {
+                                    foreach (Ticket tick in Member.ticketList)
+                                    {
+                                        if (tick.Solved == true)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                        else if (tick.Solved == false)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                    }
+                                }
+                            }
+                        }
+                    }
                     else if (option == "0")
                         break;
                     else
                         Console.WriteLine("Invalid option inputted!");
+                    }
+
                 }
-                
-            }
             else if (loggedinManager != null) //added by ee zher
             {
                 while (true)
@@ -698,7 +678,7 @@ namespace AOOAD
         {
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("1. Register User");
-            //Console.WriteLine("2. Generate Report");
+            Console.WriteLine("2. Generate Report");
             Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }
