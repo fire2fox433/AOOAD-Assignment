@@ -76,7 +76,6 @@ namespace AOOAD
 				this.usertype = value;
 			}
 		}
-		/*/
 		public User(string id, string password, string first, string last, string email)
 		{
 			UserID = id;
@@ -85,7 +84,6 @@ namespace AOOAD
 			lastName = last;
 			this.email = email;
 		}
-		/*/
 		public User login()
 		{
 			return this;

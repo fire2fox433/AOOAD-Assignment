@@ -1,4 +1,13 @@
-﻿using System;
+﻿//
+//  Program.cs
+//  AOOAD-Assignment
+//
+//  Created by Chen Yifan on 4/2/17
+//  Copyright © 2017 Chen Yifan. All rights reserved.
+//
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,41 +17,40 @@ namespace AOOAD
 	{
 		public static void Main(string[] args)
 		{
-            TicketList ticketList = new TicketList(10); //added by ee zher
+            //Preinitialising Lists
+            TicketList ticketList = new TicketList(10);
             List<Problem> problemList = new List<Problem>();
-			//List<Ticket> ticketList = new List<Ticket>();
 			List<ITSupportMember> ITSupportMemberList = new List<ITSupportMember>();
             List<Report> reportList = new List<Report>();
 			List<Employee> employeeList = new List<Employee>();
 			List<ReportManager> managerList = new List<ReportManager>();
-
+            //Preinitialising Accounts, Tickets, Variables for login
             ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
             ITSupportMember newMember = new ITSupportMember("345", "345", "hehe", "xd", "123");
             ITSupportMemberList.Add(newMember);
-            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null); //added the 1 by ee zher
+            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null);
             ITSupportMemberList.Add(newUser);
-            newTicket1.incharge = newUser; // can't you put it like that???
-            newUser.ticketList.Add(newTicket1); // added by ee zher
-            ticketList.add(newTicket1); //added the 1 by ee zher
-            //ticketList[0].incharge = newUser; //commented out by ee zher
-
-            Ticket newTicket2 = new Ticket("135", "135", "harddisk drive died", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
-            newTicket2.Solved = true; //added v2 by ee zher
-            ticketList.add(newTicket2); //added v2 by ee zher
-            newUser.ticketList.Add(newTicket2); //added by ee zher
-            newUser = null;
+            newTicket1.incharge = newUser;
+            newUser.ticketList.Add(newTicket1);
+            ticketList.add(newTicket1);
+            Ticket newTicket2 = new Ticket("135", "135", "harddisk drive died", "Mac IOS", null, "Super good", 0, null);
+            newTicket2.Solved = true;
+            ticketList.add(newTicket2); 
+            newUser.ticketList.Add(newTicket2); 
             newUser = new ITSupportMember("234", "123", "Matthew", "Chan", "123");
             newTicket2.incharge = newUser;
-            //ticketList[1].incharge = newUser; //commented out by ee zher
             ITSupportMemberList.Add(newUser);
-            Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
-            ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
-            managerList.Add(newReportManager); // added by seanmarcus
+            Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); 
+            ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); 
+            managerList.Add(newReportManager); 
             bool loggedin = false;
 			ITSupportMember loggedinIT = null;
 			Employee loggedinEmployee = null;
 			ReportManager loggedinManager = null;
 			Admin loggedinAdmin = null;
+
+
+            // login
 			while (loggedin == false)
 			{
 				Console.WriteLine("Please login \nUsername: ");
@@ -104,16 +112,18 @@ namespace AOOAD
 					Console.WriteLine("Error, no such user found.");
 				}
 			}
-			//IT
+
+			//IT Support Member
 			if (loggedinIT != null)
 			{
 				while (true)
 				{
 					Itmenu();
 					string option = Console.ReadLine();
-                    //yifan's usecase
+                    //yifan's usecase - Share ticket
 					if (option == "1")
 					{
+                        //placing all the open tickets into a list and display it
 						List<Ticket> openList = new List<Ticket>();
 						Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
 						int no = 0;
@@ -128,6 +138,7 @@ namespace AOOAD
 							}
 						}
 						string ticketOption = "0";
+                        //user selecting ticket
 						while (true)
 						{
 							Console.WriteLine("Please enter the ticket you want to pick: ");
@@ -142,6 +153,7 @@ namespace AOOAD
 							}
 						}
 						Ticket selectedShareTicket = openList[Convert.ToInt32(ticketOption) - 1];
+                        //sharing ticket based on userID
 						bool sharesuccess = false;
 						while (sharesuccess == false)
 						{
@@ -150,12 +162,14 @@ namespace AOOAD
 							{
 								Console.WriteLine("Please enter the username you want to share to: ");
 								shareusername = Console.ReadLine();
+                                //check for self share
 								if (shareusername == loggedinIT.userID)
 								{
 									Console.WriteLine("You cannot share to yourself!");
 								}
 
 							}
+                            //check if valid userid and share
 							for (int i = 0; i < ITSupportMemberList.Count; i++)
 							{
 								if (ITSupportMemberList[i].userID == shareusername)
@@ -179,6 +193,7 @@ namespace AOOAD
 							{
 								Console.WriteLine("No such username exists!");
 							}
+                            //asks if you want to share the ticket to more people
 							else if (sharesuccess == true)
 							{
                                 while (true)
@@ -253,6 +268,7 @@ namespace AOOAD
 				}
 
             }
+            //admin
             else if (loggedinAdmin != null)
             {
                 while (true)
@@ -646,7 +662,8 @@ namespace AOOAD
                     }
 
                 }
-            else if (loggedinManager != null) //added by ee zher
+            //Report Manager
+            else if (loggedinManager != null)
             {
                 while (true)
                 {
@@ -713,6 +730,7 @@ namespace AOOAD
                         Console.WriteLine("Wrong input");
                 }
             }
+            //employee
             else if (loggedinEmployee != null)
             {
                 while (true)
@@ -730,16 +748,12 @@ namespace AOOAD
                 }
                     
             }
-
-
-
-
-
-
-
-
 		}
-		public static void Itmenu() //added option 0 by ee zher
+
+
+        //menus for each of the logins
+        //IT Support Member Menu
+		public static void Itmenu()
 		{
 			Console.WriteLine("-----------------------------");
 			Console.WriteLine("1. Share a ticket");
@@ -753,8 +767,8 @@ namespace AOOAD
 			Console.WriteLine("Please enter your preferred option: ");
 		}
 
-        // Seanmarcus Admin Menu
-        public static void  AdminMenu() //added option 0 by ee zher
+        //Admin Menu
+        public static void  AdminMenu()
         {
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("1. Register User");
@@ -762,8 +776,8 @@ namespace AOOAD
             Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }
-
-        public static void RptMenu() //added by ee zher
+        //Report Manager Menu
+        public static void RptMenu() 
         {
             Console.WriteLine("-----------------------------");
             Console.WriteLine("1. Assign Ticket to a IT member");
@@ -772,7 +786,7 @@ namespace AOOAD
             Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }
-
+        //Employee Menu
         public static void EmpyMenu() //added by ee zher
         {
             Console.WriteLine("-----------------------------");
@@ -781,7 +795,7 @@ namespace AOOAD
             Console.WriteLine("Please enter your preferred option: ");
         }
 
-        public static void RMenu() //added by ee zher
+        public static void RMenu()
         {
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine("a: View all Solved Ticket");
