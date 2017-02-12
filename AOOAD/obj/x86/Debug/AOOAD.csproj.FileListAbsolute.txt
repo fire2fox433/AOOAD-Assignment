@@ -45,3 +45,5 @@ C:\Users\EeZhe\Downloads\AOOAD\Assignment Clones\Take 3\AOOAD-Assignment\AOOAD\o
 C:\Users\EeZhe\Downloads\AOOAD\Assignment Clones\Take 3\AOOAD-Assignment\AOOAD\bin\Debug\AOOAD.exe
 C:\Users\EeZhe\Downloads\AOOAD\Assignment Clones\Take 3\AOOAD-Assignment\AOOAD\bin\Debug\AOOAD.pdb
 C:\Users\EeZhe\Downloads\AOOAD\Assignment Clones\Take 3\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.csprojResolveAssemblyReference.cache
+C:\Users\EeZhe\Downloads\AOOAD\Assignment Clones\Take 5\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.exe
+C:\Users\EeZhe\Downloads\AOOAD\Assignment Clones\Take 5\AOOAD-Assignment\AOOAD\obj\x86\Debug\AOOAD.pdb

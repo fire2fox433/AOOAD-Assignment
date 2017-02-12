@@ -4,16 +4,16 @@ namespace AOOAD
 {
 	public class Employee : User
 	{
-		private string phone_no;
-		public string Phone_no
+		private string depNo;
+		public string DepNo
 		{
 			get
 			{
-				return this.phone_no;
+				return this.depNo;
 			}
 			set
 			{
-				this.phone_no = value;
+				this.depNo = value;
 			}
 		}
 		private string address;
@@ -40,14 +40,14 @@ namespace AOOAD
 				this.postal_code = value;
 			}
 		}
-		public Employee(string id, string password, string first, string last, string email, string phone, string address, string postal)
+		public Employee(string id, string password, string first, string last, string email, string depNo, string address, string postal)
 		{
 			UserID = id;
 			this.password = password;
 			firstName = first;
 			lastName = last;
 			this.email = email;
-			this.Phone_no = phone;
+			this.depNo = depNo;
 			this.Address = address;
 			this.Postal_code = postal;
 			this.userType = "Employee";
