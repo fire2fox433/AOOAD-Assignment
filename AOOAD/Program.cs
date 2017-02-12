@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AOOAD
 {
@@ -107,6 +108,7 @@ namespace AOOAD
 				{
 					Itmenu();
 					string option = Console.ReadLine();
+                    //yifan's usecase
 					if (option == "1")
 					{
 						List<Ticket> openList = new List<Ticket>();
@@ -187,7 +189,46 @@ namespace AOOAD
 
 
 					}
-					else if (option == "0")
+                    else if (option == "2")
+                    {/*/
+                        Console.WriteLine("Category\tProblem Desc\t\t\tSystem Name\tIn Charge\tStatus\tSolved\tShared With");
+                        for (int i = 0; i < ticketList.NumberOfTickets; i++)
+                        {
+                            Ticket currentTicket = ticketList.getInfo(i);
+                            if (currentTicket.sharedList.ElementAtOrDefault(0) == null)
+                            {
+                                Console.WriteLine(currentTicket.Category + "\t" + currentTicket.Problem_desc + "\t\t" + currentTicket.System_name + "\t" + currentTicket.incharge.userID + "\t" + currentTicket.viewStatus() + "\t" + currentTicket.Employee.userID + "\tNone");
+                            }
+                            else
+                            {
+                                Console.WriteLine(currentTicket.Category + "\t" + currentTicket.Problem_desc + "\t\t" + currentTicket.System_name + "\t" + currentTicket.incharge.userID + "\t" + currentTicket.viewStatus() + "\t" + currentTicket.Employee.userID + "\t" + currentTicket.sharedList[0].userID);
+                            }
+                            
+
+                        }
+                        /*/
+                    }
+                    else if (option == "3")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "4")
+                    {
+                        //weijhin usecase
+                    }
+                    else if (option == "5")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "6")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "7")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "0")
 					{
 						Console.WriteLine("Logging out...");
 						break;
@@ -668,6 +709,10 @@ namespace AOOAD
                             }
                         }
                     }
+                    else if (option == "3")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
                     else if (option == "0")
                         break;
                     else
@@ -676,6 +721,20 @@ namespace AOOAD
             }
             else if (loggedinEmployee != null)
             {
+                while (true)
+                {
+                    EmpyMenu();
+                    string option = Console.ReadLine();
+                    if (option == "1")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "0")
+                        break;
+                    else
+                        Console.WriteLine("Invalid option inputted!");
+                }
+                    
             }
 
 
@@ -690,6 +749,12 @@ namespace AOOAD
 		{
 			Console.WriteLine("-----------------------------");
 			Console.WriteLine("1. Share a ticket");
+            Console.WriteLine("2. View Ticket List");
+            Console.WriteLine("3. Reopen Ticket // not implemented");
+            Console.WriteLine("4. Raise Ticket");
+            Console.WriteLine("5. Assign Ticket // not implemented");
+            Console.WriteLine("6. Comment Ticket // not implemented");
+            Console.WriteLine("7. Solve Ticket // not implemented");
             Console.WriteLine("0. Logout");
 			Console.WriteLine("Please enter your preferred option: ");
 		}
@@ -709,6 +774,7 @@ namespace AOOAD
             Console.WriteLine("-----------------------------");
             Console.WriteLine("1. Assign Ticket to a IT member");
             Console.WriteLine("2. Generate Report");
+            Console.WriteLine("3. Assign Ticket");
             Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }

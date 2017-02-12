@@ -198,7 +198,7 @@ namespace AOOAD
                 this.myProblem = value;
             }
         }
-        public List<User> sharedList = new List<User>();
+        public List<ITSupportMember> sharedList = new List<ITSupportMember>();
 		public void setStatus(TicketState state)
 		{
 			this.status = state;
