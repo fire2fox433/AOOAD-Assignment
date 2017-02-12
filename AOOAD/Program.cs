@@ -483,8 +483,7 @@ namespace AOOAD
                                         if (regTrue == "Yes" || regTrue == "yes" || regTrue == "YES" || regTrue == "Y" || regTrue == "y")
                                         {
                                             ITSupportMember newSupport = new ITSupportMember(userid, password, first, last, email);
-                                            //ITSupportMemberList.Add(newSupport);
-                                            ITSupportMemberList.Add(newSupport); // added v2
+                                            ITSupportMemberList.Add(newSupport);
                                             Console.WriteLine(userid + " is successfully registered!");
                                             break;
                                         }
