@@ -17,7 +17,8 @@ namespace AOOAD
 			List<ReportManager> managerList = new List<ReportManager>();
 
             ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
-            
+            ITSupportMember newMember = new ITSupportMember("345", "345", "hehe", "xd", "123");
+            ITSupportMemberList.Add(newMember);
             Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null); //added the 1 by ee zher
             ITSupportMemberList.Add(newUser);
             newTicket1.incharge = newUser; // can't you put it like that???
@@ -180,12 +181,21 @@ namespace AOOAD
 							}
 							else if (sharesuccess == true)
 							{
-								Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
-								string yorn = Console.ReadLine();
-								if (yorn == "Y")
-									sharesuccess = false;
-								else
-									break;
+                                while (true)
+                                {
+                                    Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
+                                    string yorn = Console.ReadLine();
+                                    if (yorn == "Y" || yorn == "y" || yorn == "YES" || yorn == "Yes" || yorn == "yes")
+                                    {
+                                        sharesuccess = false;
+                                        break;
+                                    }
+                                    else if (yorn == "n" || yorn == "N" || yorn == "No" || yorn == "NO" || yorn == "no")
+                                        break;
+                                    else
+                                        Console.WriteLine("Sorry, I couldn't understand that input, please try again.");
+                                }
+								
 							}
 						}
 
@@ -193,10 +203,26 @@ namespace AOOAD
 					}
                     else if (option == "2")
                     {
-                        Console.WriteLine("Category\tProblem Desc\t\t\tSystem Name\tIn Charge\tStatus\t\t\tSolved\tShared With");
+                        Console.WriteLine("Category\tProblem Desc\t\t\tSystem Name\tIn Charge\tStatus\tSolved\tShared With");
                         for (int i = 0; i < ticketList.NumberOfTickets; i++)
                         {
-                            Console.WriteLine("{0} \t\t{1} \t\t{2} \t{3} \t{4} \t{5} \t{6}",ticketList.getInfo(i).Category,ticketList.getInfo(i).Problem_desc,ticketList.getInfo(i).System_name,ticketList.getInfo(i).incharge.FirstName,ticketList.getInfo(i).Status, ticketList.getInfo(i).Solved, ticketList.getInfo(i).sharedList);
+                            if (ticketList.getInfo(i).sharedList.ElementAtOrDefault(0) != null)
+                            {
+                                Console.WriteLine("{0} \t\t{1} \t\t{2} \t{3} \t{4} \t{5} \t{6}", ticketList.getInfo(i).Category, ticketList.getInfo(i).Problem_desc, ticketList.getInfo(i).System_name, ticketList.getInfo(i).incharge.FirstName, ticketList.getInfo(i).viewStatus(), ticketList.getInfo(i).Solved, ticketList.getInfo(i).sharedList[0].userID);
+                                if (ticketList.getInfo(i).sharedList.ElementAtOrDefault(1) != null)
+                                {
+                                    for (int x = 1; x < ticketList.getInfo(i).sharedList.Count; x++)
+                                    {
+                                        Console.WriteLine("\t\t\t\t\t\t\t\t\t\t\t\t" + ticketList.getInfo(i).sharedList[x].userID);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("{0} \t\t{1} \t\t{2} \t{3} \t{4} \t{5} \tNo shared users.", ticketList.getInfo(i).Category, ticketList.getInfo(i).Problem_desc, ticketList.getInfo(i).System_name, ticketList.getInfo(i).incharge.FirstName, ticketList.getInfo(i).viewStatus(), ticketList.getInfo(i).Solved);
+                            }
+                            
+                            
                         }
                     }
                     else if (option == "3")
