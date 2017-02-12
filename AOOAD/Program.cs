@@ -25,12 +25,12 @@ namespace AOOAD
             ticketList.add(newTicket1); //added the 1 by ee zher
             //ticketList[0].incharge = newUser; //commented out by ee zher
 
-            Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
+            Ticket newTicket2 = new Ticket("135", "135", "harddisk drive died", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
             newTicket2.Solved = true; //added v2 by ee zher
             ticketList.add(newTicket2); //added v2 by ee zher
             newUser.ticketList.Add(newTicket2); //added by ee zher
             newUser = null;
-            newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
+            newUser = new ITSupportMember("234", "123", "Matthew", "Chan", "123");
             newTicket2.incharge = newUser;
             //ticketList[1].incharge = newUser; //commented out by ee zher
             ITSupportMemberList.Add(newUser);
@@ -192,23 +192,12 @@ namespace AOOAD
 
 					}
                     else if (option == "2")
-                    {/*/
-                        Console.WriteLine("Category\tProblem Desc\t\t\tSystem Name\tIn Charge\tStatus\tSolved\tShared With");
+                    {
+                        Console.WriteLine("Category\tProblem Desc\t\t\tSystem Name\tIn Charge\tStatus\t\t\tSolved\tShared With");
                         for (int i = 0; i < ticketList.NumberOfTickets; i++)
                         {
-                            Ticket currentTicket = ticketList.getInfo(i);
-                            if (currentTicket.sharedList.ElementAtOrDefault(0) == null)
-                            {
-                                Console.WriteLine(currentTicket.Category + "\t" + currentTicket.Problem_desc + "\t\t" + currentTicket.System_name + "\t" + currentTicket.incharge.userID + "\t" + currentTicket.viewStatus() + "\t" + currentTicket.Employee.userID + "\tNone");
-                            }
-                            else
-                            {
-                                Console.WriteLine(currentTicket.Category + "\t" + currentTicket.Problem_desc + "\t\t" + currentTicket.System_name + "\t" + currentTicket.incharge.userID + "\t" + currentTicket.viewStatus() + "\t" + currentTicket.Employee.userID + "\t" + currentTicket.sharedList[0].userID);
-                            }
-                            
-
+                            Console.WriteLine("{0} \t\t{1} \t\t{2} \t{3} \t{4} \t{5} \t{6}",ticketList.getInfo(i).Category,ticketList.getInfo(i).Problem_desc,ticketList.getInfo(i).System_name,ticketList.getInfo(i).incharge.FirstName,ticketList.getInfo(i).Status, ticketList.getInfo(i).Solved, ticketList.getInfo(i).sharedList);
                         }
-                        /*/
                     }
                     else if (option == "3")
                     {

@@ -20,7 +20,6 @@ namespace AOOAD
         {
             return new TicketIterator(this, solved);
         }
-
         public int NumberOfTickets
         {
             get { return numberofTickets; }
