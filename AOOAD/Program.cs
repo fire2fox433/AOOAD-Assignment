@@ -20,12 +20,14 @@ namespace AOOAD
             Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null); //added the 1 by ee zher
             ITSupportMemberList.Add(newUser);
             newTicket1.incharge = newUser; // can't you put it like that???
+            newUser.ticketList.Add(newTicket1); // added by ee zher
             ticketList.add(newTicket1); //added the 1 by ee zher
             //ticketList[0].incharge = newUser; //commented out by ee zher
 
             Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
             newTicket2.Solved = true; //added v2 by ee zher
             ticketList.add(newTicket2); //added v2 by ee zher
+            newUser.ticketList.Add(newTicket2); //added by ee zher
             newUser = null;
             newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
             newTicket2.incharge = newUser;
@@ -652,19 +654,16 @@ namespace AOOAD
                             string memID = Console.ReadLine();
                             foreach (ITSupportMember Member in ITSupportMemberList)
                             {
-                                //if (Member.userID == memID)
-                                //{
-                                //    foreach (Ticket tick in ticketList)
-                                //    {
-                                //        if (tick.incharge == Member)
-                                //        {
-                                //            if (tick.Solved == true)
-                                //                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                                //            else if (tick.Solved == false)
-                                //                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                                //        }
-                                //    }
-                                //}
+                                if (Member.userID == memID)
+                                {
+                                    foreach (Ticket tick in Member.ticketList)
+                                    {
+                                        if (tick.Solved == true)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                        else if (tick.Solved == false)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                    }
+                                }
                             }
                         }
                     }
