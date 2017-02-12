@@ -28,7 +28,7 @@ namespace AOOAD
             ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
             ITSupportMember newMember = new ITSupportMember("345", "345", "hehe", "xd", "123");
             ITSupportMemberList.Add(newMember);
-            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null);
+            Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "bad", 10, null);
             ITSupportMemberList.Add(newUser);
             newTicket1.incharge = newUser;
             newUser.ticketList.Add(newTicket1);
@@ -123,96 +123,105 @@ namespace AOOAD
                     //yifan's usecase - Share ticket
 					if (option == "1")
 					{
-                        //placing all the open tickets into a list and display it
-						List<Ticket> openList = new List<Ticket>();
-						Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
-						int no = 0;
-						for (int i = 0; i < ticketList.NumberOfTickets; i++)
-						{
-							if (ticketList.getInfo(i).viewStatus() == "open")
-							{
-								no = no + 1;
-								openList.Add(ticketList.getInfo(i));
-								Console.WriteLine(no + "\t" + ticketList.getInfo(i).TicketID + "\t\t" + ticketList.getInfo(i).Problem_desc + "\t" + ticketList.getInfo(i).Solved);
-
-							}
-						}
-						string ticketOption = "0";
-                        //user selecting ticket
-						while (true)
-						{
-							Console.WriteLine("Please enter the ticket you want to pick: ");
-							ticketOption = Console.ReadLine();
-							if (openList.Count < Convert.ToInt32(ticketOption) || Convert.ToInt32(ticketOption) < 1)
-							{
-								Console.WriteLine("Invalid ticket option!");
-							}
-							else
-							{
-								break;
-							}
-						}
-						Ticket selectedShareTicket = openList[Convert.ToInt32(ticketOption) - 1];
-                        //sharing ticket based on userID
-						bool sharesuccess = false;
-						while (sharesuccess == false)
-						{
-							string shareusername = loggedinIT.userID;
-							while (shareusername == loggedinIT.userID)
-							{
-								Console.WriteLine("Please enter the username you want to share to: ");
-								shareusername = Console.ReadLine();
-                                //check for self share
-								if (shareusername == loggedinIT.userID)
-								{
-									Console.WriteLine("You cannot share to yourself!");
-								}
-
-							}
-                            //check if valid userid and share
-							for (int i = 0; i < ITSupportMemberList.Count; i++)
-							{
-								if (ITSupportMemberList[i].userID == shareusername)
-								{
-									for (int y = 0; y < ticketList.NumberOfTickets; y++)
-									{
-										if (ticketList.getInfo(y) == selectedShareTicket)
-										{
-											ticketList.getInfo(y).sharedList.Add(ITSupportMemberList[i]);
-											ITSupportMemberList[i].sharedList.Add(ticketList.getInfo(y));
-											sharesuccess = true;
-										}
-									}
-								}
-								else
-								{
-									continue;
-								}
-							}
-							if (sharesuccess == false)
-							{
-								Console.WriteLine("No such username exists!");
-							}
-                            //asks if you want to share the ticket to more people
-							else if (sharesuccess == true)
-							{
-                                while (true)
+                        //checks whether if logged in user is in charge of anything
+                        if (loggedinIT.ticketList.Count != 0)
+                        {
+                            //placing all the open tickets into a list and display it
+                            List<Ticket> openList = new List<Ticket>();
+                            Console.WriteLine("No.\tTicket ID\tTicket Desc.\t\tSolved");
+                            int no = 0;
+                            for (int i = 0; i < loggedinIT.ticketList.Count; i++)
+                            {
+                                if (loggedinIT.ticketList[i].viewStatus() == "open")
                                 {
-                                    Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
-                                    string yorn = Console.ReadLine();
-                                    if (yorn == "Y" || yorn == "y" || yorn == "YES" || yorn == "Yes" || yorn == "yes")
-                                    {
-                                        sharesuccess = false;
-                                        break;
-                                    }
-                                    else if (yorn == "n" || yorn == "N" || yorn == "No" || yorn == "NO" || yorn == "no")
-                                        break;
-                                    else
-                                        Console.WriteLine("Sorry, I couldn't understand that input, please try again.");
+                                    no = no + 1;
+                                    openList.Add(ticketList.getInfo(i));
+                                    Console.WriteLine(no + "\t" + ticketList.getInfo(i).TicketID + "\t\t" + ticketList.getInfo(i).Problem_desc + "\t" + ticketList.getInfo(i).Solved);
+
                                 }
-								
-							}
-						}
+                            }
+                            string ticketOption = "0";
+                            //user selecting ticket
+                            while (true)
+                            {
+                                Console.WriteLine("Please enter the ticket you want to pick: ");
+                                ticketOption = Console.ReadLine();
+                                if (openList.Count < Convert.ToInt32(ticketOption) || Convert.ToInt32(ticketOption) < 1)
+                                {
+                                    Console.WriteLine("Invalid ticket option!");
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            Ticket selectedShareTicket = openList[Convert.ToInt32(ticketOption) - 1];
+                            //sharing ticket based on userID
+                            bool sharesuccess = false;
+                            while (sharesuccess == false)
+                            {
+                                string shareusername = loggedinIT.userID;
+                                while (shareusername == loggedinIT.userID)
+                                {
+                                    Console.WriteLine("Please enter the username you want to share to: ");
+                                    shareusername = Console.ReadLine();
+                                    //check for self share
+                                    if (shareusername == loggedinIT.userID)
+                                    {
+                                        Console.WriteLine("You cannot share to yourself!");
+                                    }
+
+                                }
+                                //check if valid userid and share
+                                for (int i = 0; i < ITSupportMemberList.Count; i++)
+                                {
+                                    if (ITSupportMemberList[i].userID == shareusername)
+                                    {
+                                        for (int y = 0; y < ticketList.NumberOfTickets; y++)
+                                        {
+                                            if (ticketList.getInfo(y) == selectedShareTicket)
+                                            {
+                                                ticketList.getInfo(y).sharedList.Add(ITSupportMemberList[i]);
+                                                ITSupportMemberList[i].sharedList.Add(ticketList.getInfo(y));
+                                                sharesuccess = true;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+                                if (sharesuccess == false)
+                                {
+                                    Console.WriteLine("No such username exists!");
+                                }
+                                //asks if you want to share the ticket to more people
+                                else if (sharesuccess == true)
+                                {
+                                    while (true)
+                                    {
+                                        Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
+                                        string yorn = Console.ReadLine();
+                                        if (yorn == "Y" || yorn == "y" || yorn == "YES" || yorn == "Yes" || yorn == "yes")
+                                        {
+                                            sharesuccess = false;
+                                            break;
+                                        }
+                                        else if (yorn == "n" || yorn == "N" || yorn == "No" || yorn == "NO" || yorn == "no")
+                                            break;
+                                        else
+                                            Console.WriteLine("Sorry, I couldn't understand that input, please try again.");
+                                    }
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("You are not in charge of any tickets!");
+                        }
+                        
 
 
 					}
