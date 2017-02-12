@@ -667,6 +667,8 @@ namespace AOOAD
                         {
                             Console.WriteLine("ID: {0}   Name: {1} {2}",Member.userID,Member.FirstName,Member.LastName);
                         }
+                        //Not implemented
+                        Console.WriteLine("Assign Ticket is not implemented by our team");
                     }
                     else if (option == "2") //Generate Report
                     {
