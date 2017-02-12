@@ -35,8 +35,8 @@ namespace AOOAD
             newTicket2.incharge = newUser;
             //ticketList[1].incharge = newUser; //commented out by ee zher
             ITSupportMemberList.Add(newUser);
-            Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
-            ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
+            Admin adminAccount = Admin.getInstance("admin", "admin", "admin123", "456", "123"); // editted by ee zher
+            ReportManager newReportManager = new ReportManager("report", "report", "reporter123", "789", "123"); // editted by ee zher
             managerList.Add(newReportManager); // added by seanmarcus
             bool loggedin = false;
 			ITSupportMember loggedinIT = null;
@@ -606,6 +606,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", ((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
@@ -614,6 +617,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", ((Ticket)iIter.CurrentItem(false)).TicketID, ((Ticket)iIter.next(false)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "c" || alphaOpt == "C")
                         {
@@ -637,6 +643,9 @@ namespace AOOAD
                                     }
                                 }
                             }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
                         }
                     }
                     else if (option == "0")
@@ -670,6 +679,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved",((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
@@ -678,6 +690,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", ((Ticket)iIter.CurrentItem(false)).TicketID, ((Ticket)iIter.next(false)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "c" || alphaOpt == "C")
                         {
@@ -701,6 +716,9 @@ namespace AOOAD
                                     }
                                 }
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                     }
                     else if (option == "3")
