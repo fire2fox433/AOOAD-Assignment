@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AOOAD
 {
@@ -16,23 +17,26 @@ namespace AOOAD
 			List<ReportManager> managerList = new List<ReportManager>();
 
             ITSupportMember newUser = new ITSupportMember("123", "123", "Kenneth", "San", "123");
-            
+            ITSupportMember newMember = new ITSupportMember("345", "345", "hehe", "xd", "123");
+            ITSupportMemberList.Add(newMember);
             Ticket newTicket1 = new Ticket("123", "123", "blue screen of death", "windows", null, "fking bad", 10, null); //added the 1 by ee zher
             ITSupportMemberList.Add(newUser);
             newTicket1.incharge = newUser; // can't you put it like that???
+            newUser.ticketList.Add(newTicket1); // added by ee zher
             ticketList.add(newTicket1); //added the 1 by ee zher
             //ticketList[0].incharge = newUser; //commented out by ee zher
 
-            Ticket newTicket2 = new Ticket("135", "135", "donezo", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
+            Ticket newTicket2 = new Ticket("135", "135", "harddisk drive died", "Mac IOS", null, "Super good", 0, null); //added v2 by ee zher
             newTicket2.Solved = true; //added v2 by ee zher
             ticketList.add(newTicket2); //added v2 by ee zher
+            newUser.ticketList.Add(newTicket2); //added by ee zher
             newUser = null;
-            newUser = new ITSupportMember("234", "123", "Ken", "Chan", "123");
+            newUser = new ITSupportMember("234", "123", "Matthew", "Chan", "123");
             newTicket2.incharge = newUser;
             //ticketList[1].incharge = newUser; //commented out by ee zher
             ITSupportMemberList.Add(newUser);
-            Admin adminAccount = Admin.getInstance("admin", "admin", "123", "123", "123"); // added by seanmarcus
-            ReportManager newReportManager = new ReportManager("report", "report", "123", "123", "123"); // added by seanmarcus
+            Admin adminAccount = Admin.getInstance("admin", "admin", "admin123", "456", "123"); // editted by ee zher
+            ReportManager newReportManager = new ReportManager("report", "report", "reporter123", "789", "123"); // editted by ee zher
             managerList.Add(newReportManager); // added by seanmarcus
             bool loggedin = false;
 			ITSupportMember loggedinIT = null;
@@ -107,6 +111,7 @@ namespace AOOAD
 				{
 					Itmenu();
 					string option = Console.ReadLine();
+                    //yifan's usecase
 					if (option == "1")
 					{
 						List<Ticket> openList = new List<Ticket>();
@@ -176,18 +181,71 @@ namespace AOOAD
 							}
 							else if (sharesuccess == true)
 							{
-								Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
-								string yorn = Console.ReadLine();
-								if (yorn == "Y")
-									sharesuccess = false;
-								else
-									break;
+                                while (true)
+                                {
+                                    Console.WriteLine("Ticket shared successfully, would you like to share to another IT support staff?(Y/N)");
+                                    string yorn = Console.ReadLine();
+                                    if (yorn == "Y" || yorn == "y" || yorn == "YES" || yorn == "Yes" || yorn == "yes")
+                                    {
+                                        sharesuccess = false;
+                                        break;
+                                    }
+                                    else if (yorn == "n" || yorn == "N" || yorn == "No" || yorn == "NO" || yorn == "no")
+                                        break;
+                                    else
+                                        Console.WriteLine("Sorry, I couldn't understand that input, please try again.");
+                                }
+								
 							}
 						}
 
 
 					}
-					else if (option == "0")
+                    else if (option == "2")
+                    {
+                        Console.WriteLine("Category\tProblem Desc\t\t\tSystem Name\tIn Charge\tStatus\tSolved\tShared With");
+                        for (int i = 0; i < ticketList.NumberOfTickets; i++)
+                        {
+                            if (ticketList.getInfo(i).sharedList.ElementAtOrDefault(0) != null)
+                            {
+                                Console.WriteLine("{0} \t\t{1} \t\t{2} \t{3} \t{4} \t{5} \t{6}", ticketList.getInfo(i).Category, ticketList.getInfo(i).Problem_desc, ticketList.getInfo(i).System_name, ticketList.getInfo(i).incharge.FirstName, ticketList.getInfo(i).viewStatus(), ticketList.getInfo(i).Solved, ticketList.getInfo(i).sharedList[0].userID);
+                                if (ticketList.getInfo(i).sharedList.ElementAtOrDefault(1) != null)
+                                {
+                                    for (int x = 1; x < ticketList.getInfo(i).sharedList.Count; x++)
+                                    {
+                                        Console.WriteLine("\t\t\t\t\t\t\t\t\t\t\t\t" + ticketList.getInfo(i).sharedList[x].userID);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("{0} \t\t{1} \t\t{2} \t{3} \t{4} \t{5} \tNo shared users.", ticketList.getInfo(i).Category, ticketList.getInfo(i).Problem_desc, ticketList.getInfo(i).System_name, ticketList.getInfo(i).incharge.FirstName, ticketList.getInfo(i).viewStatus(), ticketList.getInfo(i).Solved);
+                            }
+                            
+                            
+                        }
+                    }
+                    else if (option == "3")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "4")
+                    {
+                        //weijhin usecase
+                    }
+                    else if (option == "5")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "6")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "7")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "0")
 					{
 						Console.WriteLine("Logging out...");
 						break;
@@ -537,77 +595,66 @@ namespace AOOAD
                             }
                         }
                     }
-                    //else if (option == "2")
-                    //{
-                    //    RMenu();
-                    //    string alphaOpt = Console.ReadLine();
-                    //    if (alphaOpt == "a" || alphaOpt == "A")
-                    //    {
-                    //        //View all Solved Tickets
-                    //        foreach (Ticket tick in ticketList)
-                    //        {
-                    //            if (tick.Solved == true)
-                    //            {
-                    //                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                    //            }
-                    //        }
-                    //    }
-                    //    else if (alphaOpt == "b" || alphaOpt == "B")
-                    //    {
-                    //        //View all Unsolved Tickets
-                    //        foreach (Ticket tick in ticketList)
-                    //        {
-                    //            if (tick.Solved == false)
-                    //            {
-                    //                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                    //            }
-                    //        }
-                    //    }
-                    //    else if (alphaOpt == "c" || alphaOpt == "C")
-                    //    {
-                    //        //View all tickets assigned by an IT member
-                    //        foreach (ITSupportMember Member in ITSupportMemberList)
-                    //        {
-                    //            Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
-                    //        }
-                    //        Console.WriteLine("Select the User you wish to view");
-                    //        string memID = Console.ReadLine();
-                    //        foreach (ITSupportMember Member in ITSupportMemberList)
-                    //        {
-                    //            if (Member.userID == memID)
-                    //            {
-                    //                foreach (Ticket tick in ticketList)
-                    //                {
-                    //                    if (tick.Raised_by == Member)
-                    //                    {
-                    //                        if (tick.Solved == true)
-                    //                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                    //                        else if (tick.Solved == false)
-                    //                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //}
-                    //else if (option == "3")
-                    //{
-                    //    for (int i = 0; i < userList.Count; i++)
-                    //    {
-                    //        Console.WriteLine(userList[i]);
-                    //    }
-                    //    for (int i = 0; i < managerList.Count; i++)
-                    //    {
-                    //        Console.WriteLine(managerList[i].userID + "\t" + managerList[i].userType);
-                    //    }
-                    //}
+                    else if (option == "2") //Generate Report
+                    {
+                        RMenu();
+                        string alphaOpt = Console.ReadLine();
+                        if (alphaOpt == "a" || alphaOpt == "A")
+                        {
+                            TicketIterator iIter = ticketList.createIterator(true);
+                            while (iIter.hasNext() == true)
+                            {
+                                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved", ((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
+                            }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
+                        }
+                        else if (alphaOpt == "b" || alphaOpt == "B")
+                        {
+                            TicketIterator iIter = ticketList.createIterator(false);
+                            while (iIter.hasNext() == true)
+                            {
+                                Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", ((Ticket)iIter.CurrentItem(false)).TicketID, ((Ticket)iIter.next(false)).Problem_desc);
+                            }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
+                        }
+                        else if (alphaOpt == "c" || alphaOpt == "C")
+                        {
+                            //View all tickets assigned by an IT member
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                Console.WriteLine("ID: {0}   Name: {1} {2}", Member.userID, Member.FirstName, Member.LastName);
+                            }
+                            Console.WriteLine("Select the User you wish to view");
+                            string memID = Console.ReadLine();
+                            foreach (ITSupportMember Member in ITSupportMemberList)
+                            {
+                                if (Member.userID == memID)
+                                {
+                                    foreach (Ticket tick in Member.ticketList)
+                                    {
+                                        if (tick.Solved == true)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                        else if (tick.Solved == false)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                    }
+                                }
+                            }
+                            Report newrpt = new Report();
+                            loggedinAdmin.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinAdmin.reportList[0].Time_printed);
+                        }
+                    }
                     else if (option == "0")
                         break;
                     else
                         Console.WriteLine("Invalid option inputted!");
+                    }
+
                 }
-                
-            }
             else if (loggedinManager != null) //added by ee zher
             {
                 while (true)
@@ -620,6 +667,8 @@ namespace AOOAD
                         {
                             Console.WriteLine("ID: {0}   Name: {1} {2}",Member.userID,Member.FirstName,Member.LastName);
                         }
+                        //Not implemented
+                        Console.WriteLine("Assign Ticket is not implemented by our team");
                     }
                     else if (option == "2") //Generate Report
                     {
@@ -632,6 +681,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Solved",((Ticket)iIter.CurrentItem(true)).TicketID, ((Ticket)iIter.next(true)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "b" || alphaOpt == "B")
                         {
@@ -640,6 +692,9 @@ namespace AOOAD
                             {
                                 Console.WriteLine("ID: {0} \tProblem: {1} \tStatus: Unsolved", ((Ticket)iIter.CurrentItem(false)).TicketID, ((Ticket)iIter.next(false)).Problem_desc);
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
                         else if (alphaOpt == "c" || alphaOpt == "C")
                         {
@@ -652,21 +707,25 @@ namespace AOOAD
                             string memID = Console.ReadLine();
                             foreach (ITSupportMember Member in ITSupportMemberList)
                             {
-                                //if (Member.userID == memID)
-                                //{
-                                //    foreach (Ticket tick in ticketList)
-                                //    {
-                                //        if (tick.incharge == Member)
-                                //        {
-                                //            if (tick.Solved == true)
-                                //                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
-                                //            else if (tick.Solved == false)
-                                //                Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
-                                //        }
-                                //    }
-                                //}
+                                if (Member.userID == memID)
+                                {
+                                    foreach (Ticket tick in Member.ticketList)
+                                    {
+                                        if (tick.Solved == true)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Solved", tick.TicketID, tick.Problem_desc);
+                                        else if (tick.Solved == false)
+                                            Console.WriteLine("Ticket ID: {0} \tProblem: {1} \tStatus: Unsolved", tick.TicketID, tick.Problem_desc);
+                                    }
+                                }
                             }
+                            Report newrpt = new Report();
+                            loggedinManager.reportList.Add(newrpt);
+                            Console.WriteLine("Time printed: {0}", loggedinManager.reportList[0].Time_printed);
                         }
+                    }
+                    else if (option == "3")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
                     }
                     else if (option == "0")
                         break;
@@ -676,6 +735,20 @@ namespace AOOAD
             }
             else if (loggedinEmployee != null)
             {
+                while (true)
+                {
+                    EmpyMenu();
+                    string option = Console.ReadLine();
+                    if (option == "1")
+                    {
+                        Console.WriteLine("This function is not yet implemented.");
+                    }
+                    else if (option == "0")
+                        break;
+                    else
+                        Console.WriteLine("Invalid option inputted!");
+                }
+                    
             }
 
 
@@ -690,6 +763,12 @@ namespace AOOAD
 		{
 			Console.WriteLine("-----------------------------");
 			Console.WriteLine("1. Share a ticket");
+            Console.WriteLine("2. View Ticket List");
+            Console.WriteLine("3. Reopen Ticket // not implemented");
+            Console.WriteLine("4. Raise Ticket");
+            Console.WriteLine("5. Assign Ticket // not implemented");
+            Console.WriteLine("6. Comment Ticket // not implemented");
+            Console.WriteLine("7. Solve Ticket // not implemented");
             Console.WriteLine("0. Logout");
 			Console.WriteLine("Please enter your preferred option: ");
 		}
@@ -699,7 +778,7 @@ namespace AOOAD
         {
             Console.WriteLine("\n-----------------------------");
             Console.WriteLine("1. Register User");
-            //Console.WriteLine("2. Generate Report");
+            Console.WriteLine("2. Generate Report");
             Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }
@@ -709,6 +788,7 @@ namespace AOOAD
             Console.WriteLine("-----------------------------");
             Console.WriteLine("1. Assign Ticket to a IT member");
             Console.WriteLine("2. Generate Report");
+            Console.WriteLine("3. Assign Ticket");
             Console.WriteLine("0. Logout");
             Console.WriteLine("Please enter your preferred option: ");
         }

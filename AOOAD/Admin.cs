@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace AOOAD
 {
 	public class Admin : User
 	{
 		private static Admin uniqueInstance = null;
-
-		public Admin(string id, string password, string first, string last, string email)
+        public List<Report> reportList = new List<Report>();
+        private Admin(string id, string password, string first, string last, string email)
 		{
 			UserID = id;
 			this.password = password;
@@ -13,10 +14,6 @@ namespace AOOAD
 			lastName = last;
 			this.email = email;
 			this.userType = "Admin";
-		}
-		public void register()
-		{
-			Console.WriteLine("Sean your implementation");
 		}
 		public static Admin getInstance(string id, string password, string first, string last, string email)
 		{

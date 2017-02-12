@@ -45,5 +45,10 @@ namespace AOOAD
             }
             return tick;
         }
+
+        public void remove()
+        {
+            throw new InvalidOperationException("Remove is not supported by TicketIterator");
+        }
     }
 }

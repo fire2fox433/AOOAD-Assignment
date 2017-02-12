@@ -8,7 +8,7 @@ namespace AOOAD
 {
     class TicketList
     {
-        int numberofTickets = 0;
+        private int numberofTickets = 0;
         Ticket[] tickets;
 
         public TicketList(int size)
@@ -20,7 +20,6 @@ namespace AOOAD
         {
             return new TicketIterator(this, solved);
         }
-
         public int NumberOfTickets
         {
             get { return numberofTickets; }
