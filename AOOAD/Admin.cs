@@ -6,7 +6,7 @@ namespace AOOAD
 	{
 		private static Admin uniqueInstance = null;
         public List<Report> reportList = new List<Report>();
-        public Admin(string id, string password, string first, string last, string email)
+        private Admin(string id, string password, string first, string last, string email)
 		{
 			UserID = id;
 			this.password = password;
