@@ -15,10 +15,6 @@ namespace AOOAD
 			this.email = email;
 			this.userType = "Admin";
 		}
-		public void register()
-		{
-			Console.WriteLine("Sean your implementation");
-		}
 		public static Admin getInstance(string id, string password, string first, string last, string email)
 		{
 			if (uniqueInstance == null)
