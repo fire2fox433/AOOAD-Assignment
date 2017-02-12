@@ -4,7 +4,8 @@ namespace AOOAD
 {
 	public class ReportManager : User
 	{
-		public ReportManager(string id, string password, string first, string last, string email)
+        public List<Report> reportList = new List<Report>();
+        public ReportManager(string id, string password, string first, string last, string email)
 		{
 			UserID = id;
 			this.password = password;
